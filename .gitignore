@@ -1,0 +1,14 @@
+# WebStorm settings
+.idea
+
+node_modules
+
+npm-debug.log
+
+.tscache
+
+tmp
+.private
+
+**/.baseDir.ts
+/dist/

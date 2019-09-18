@@ -17,5 +17,11 @@
   },
   "include": [
     "src"
-  ]
+  ],
+  "typedocOptions": {
+    "mode": "modules",
+    "out": "pluginDoc",
+    "theme": "minimal",
+    "readme": "none"
+  }
 }

@@ -23,6 +23,7 @@
   "scripts": {
     "build": "tsc",
     "tslint": "tslint -p tsconfig.json",
-    "travis" : "npm run tslint && npm run build"
+    "travis" : "npm run tslint && npm run build",
+    "jenkins" : "npm run tslint && npm run build"
   }
 }

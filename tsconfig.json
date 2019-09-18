@@ -9,7 +9,7 @@
     "noUnusedParameters": true,
     "noUnusedLocals": true,
     "outDir": "dist",
-    "rootDir": ".",
+    "rootDir": "src",
     "sourceMap": true,
     "declaration": true,
     "module": "commonjs",

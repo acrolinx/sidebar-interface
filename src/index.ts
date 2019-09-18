@@ -260,6 +260,11 @@ export interface CheckOptions {
    */
   base64EncodedGzipped?: boolean;
 
+  /**
+   * Only supported with Acrolinx Platform 2019.10 (Sidebar version 14.16) and newer.
+   */
+  externalContent?: ExternalContent;
+
   requestDescription?: {
     /**
      * Usually the path and file name. In a CMS it could be the id, which can be used to
@@ -302,16 +307,6 @@ export interface ExternalContent {
   entities?: ExternalContentField[];
   ditaReferences?: ExternalContentField[];
 }
-
-/**
- * This provides an interface to check more complex document structures.
- * Only supported with Acrolinx Platform 2019.10 and newer.
- */
-export interface DocumentContentWithReferences {
-  content: string;
-  externalContent?: ExternalContent;
-}
-
 
 /**
  * After a check, the sidebar will tell the plug-in which parts of the document had been checked.
@@ -506,12 +501,11 @@ export interface AcrolinxSidebar {
    * });
    * ```
    *
-   * @param documentContent The document you want to check. Can be string or an object for documents with references.
-   * The later is only supported with Acrolinx Platform 2019.10 and newer. {@link DocumentContentWithReferences}
+   * @param documentContent The document you want to check.
    * @return Object containing The ID of the check.
    *
    */
-  checkGlobal(documentContent: string | DocumentContentWithReferences, options: CheckOptions): Check;
+  checkGlobal(documentContent: string, options: CheckOptions): Check;
 
   onGlobalCheckRejected(): void;
 

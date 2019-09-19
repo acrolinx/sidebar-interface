@@ -2,9 +2,9 @@
 
 [![Build Status](https://travis-ci.org/acrolinx/sidebar-interface.svg?branch=master)](https://travis-ci.org/acrolinx/sidebar-interface)
 
-The interface of the Sidebar interface.
+Find the documentation for this interface [here](https://acrolinx.github.io/sidebar-interface/).
 
-See: [Getting Started with Custom Integrations](https://docs.acrolinx.com/customintegrations)
+[Getting Started with Custom Integrations](https://docs.acrolinx.com/customintegrations)
 
 ## License
 

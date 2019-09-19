@@ -27,7 +27,7 @@
  *  ```
  *  var acrolinxPlugin = {...}
  *  ```
- *  Check the {@link AcrolinxPlugin} interface for required methods, that you have to implement.
+ *  Check the {@link AcrolinxPlugin} interface for required methods, that you need to implement.
  *
  * 4) Load the sidebar and the referenced libraries code (usually sidebar.js, libs.js, sidebar.css).
  *

@@ -131,16 +131,31 @@ export interface InitParameters extends SidebarConfiguration {
   enforceHTTPS?: boolean;
 
   /**
+   * By default, the Sidebar won't send or receive any cookies from the Acrolinx platform for CORS requests,
+   * resulting in unauthenticated requests if a proxy between Sidebar and platform relies on maintaining a user session.
+   * To send cookies, this option init option must be set to true.
+   */
+  corsWithCredentials?: boolean;
+
+  /**
    * Path to the log file of the integration.
    * If this property is set, the integration should also support {@link AcrolinxPlugin.openLogFile}.
    */
   logFileLocation?: string;
 
   /**
+   * This property is only effective if the Sidebar start page is used.
+   * It prevents the user to connect to a Sidebar with an lower version.
+   * Example values: '14.4.2' or '14.4'
+   */
+  minimumSidebarVersion?: string;
+
+  /**
    * Extraordinary capabilities of the plugin.
    */
   supported?: {
     checkSelection?: boolean;
+    showServerSelector?: boolean;
   };
 
   uiMode?: UiMode;
@@ -152,6 +167,28 @@ export interface InitParameters extends SidebarConfiguration {
   helpUrl?: string;
 
   /**
+   * By default, the Sidebar uses {@link AcrolinxPlugin.openWindow} to open new windows.
+   * In some web integrations this might trigger the popup blocker.
+   * If openWindowDirectly is true, the Sidebar will open new windows directly and thereby circumvent
+   * the popup blocker.
+   *
+   */
+  openWindowDirectly?: boolean;
+
+  /**
+   * An integration that configures csrfConfig should not at the same time monkey-patch the XMLHttpRequest of the
+   * sidebar.
+   */
+  csrf?: CsrfConfig;
+
+  /**
+   * If set to true: auto-advance is disabled and can't be enabled by the user.
+   * If set to false: auto-advance is enabled according to the user profile.
+   * @default false
+   */
+  disableAutoAdvanceCard?: boolean;
+
+  /**
    * The sidebar tries to sign in the user with this optional accessToken.
    * The sidebar start page forwards this accessToken to the sidebar only if showServerSelector === false.
    * New since sidebar version 14.11.0.
@@ -161,25 +198,14 @@ export interface InitParameters extends SidebarConfiguration {
 
 export type UiMode = 'default' | 'noOptions';
 
+export interface CsrfConfig {
+  url: string;
+}
+
 /**
  * These are the settings used, when checking text.
  */
-export type CheckSettings = CheckSettingsSelection | CheckingProfileSelection;
-
-export interface CheckSettingsSelection {
-  language: string;
-  ruleSetName: string;
-  termSets: string[];
-  checkSpelling: boolean;
-  checkGrammar: boolean;
-  checkStyle: boolean;
-  checkReuse: boolean;
-  harvestTerms: boolean;
-  checkSeo: boolean;
-  termStatuses: string[];
-}
-
-export interface CheckingProfileSelection {
+export interface CheckSettings {
   profileId: string;
 }
 

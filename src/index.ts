@@ -86,6 +86,7 @@ export interface InitParameters extends SidebarConfiguration {
   /**
    *
    * The client locale should be equal to or start with "en", "de", "fr", "sv" or "ja". By default it is set to "en".
+   * This clientLocale is ignored if the user configures the ui language in the sidebar manually.
    */
   clientLocale?: string;
 
@@ -104,6 +105,7 @@ export interface InitParameters extends SidebarConfiguration {
 
   /**
    * This property enables the user to manually change the serverAddress on the sidebar start page.
+   * It's not effective if the Sidebar is loaded directly.
    */
   showServerSelector?: boolean;
 
@@ -118,12 +120,6 @@ export interface InitParameters extends SidebarConfiguration {
    * If checkSettings is defined then the defaultCheckSettings will be ignored.
    */
   defaultCheckSettings?: CheckSettings;
-
-  /**
-   * If your Acrolinx Server is configured to support single sign on, you have to set this property to true in order to
-   * enable single sign on from your integration.
-   */
-  enableSingleSignOn?: boolean;
 
   /**
    * This setting will prevent any connection with an Acrolinx Server via other than HTTPS protocol.
@@ -166,12 +162,13 @@ export interface InitParameters extends SidebarConfiguration {
    */
   helpUrl?: string;
 
+  additionalSecureUrlPrefixes?: string[];
+
   /**
    * By default, the Sidebar uses {@link AcrolinxPlugin.openWindow} to open new windows.
    * In some web integrations this might trigger the popup blocker.
    * If openWindowDirectly is true, the Sidebar will open new windows directly and thereby circumvent
    * the popup blocker.
-   *
    */
   openWindowDirectly?: boolean;
 
@@ -311,7 +308,6 @@ export interface DocumentSelection {
 
 export type DocumentRange = [number, number];
 
-
 /**
  * Each {@link checkGlobal} call will return an unique id, which helps the plugin to map results,
  * selection, and replacement requests to the corresponding checked document. This is necessary, because the returned
@@ -362,13 +358,11 @@ export interface CheckResult {
 export interface CheckInformationKeyValuePair {
   /**
    * The id of the check information part.
-   *
    */
   key: string;
 
   /**
    * The value of the check information part.
-   *
    */
   value: string;
 }
@@ -380,12 +374,11 @@ export interface CheckInformationKeyValuePair {
 export interface CheckedDocumentPart {
   /**
    * The id of the check where the document part belongs to.
-   *
    */
   checkId: string;
 
   /**
-   *  A range are two numbers: A start offset and an end offset.
+   * A range are two numbers: A start offset and an end offset.
    */
   range: [number, number];
 }
@@ -638,6 +631,8 @@ export interface AcrolinxPlugin {
    * This method should open the log file.
    */
   openLogFile?(): void;
+
+  showServerSelector?(): void;
 }
 
 

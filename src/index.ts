@@ -523,13 +523,6 @@ export interface AcrolinxSidebar {
    * @param checkedDocumentRanges The ranges of previous performed checks.
    */
   onVisibleRangesChanged(checkedDocumentRanges: CheckedDocumentRange[]): void;
-
-  /**
-   * Makes sure that iframe is cleaned before removing it from DOM
-   *
-   * @param callback function
-   */
-  dispose(callback: () => void): void;
 }
 
 

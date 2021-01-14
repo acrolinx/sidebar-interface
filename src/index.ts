@@ -39,22 +39,19 @@
  * 7) Once the init process has finished, the plug-in will be notified:
  *    {@link AcrolinxPlugin.onInitFinished|onInitFinished}.
  *
- * 8) After initializing the sidebar will call {@link AcrolinxPlugin.configure|configure} and push the latest
- * configuration to the plug-in.
+ * 10) If the user pushes the button "Check", {@link AcrolinxPlugin.requestGlobalCheck|requestGlobalCheck} is called.
  *
- * 9) If the user pushes the button "Check", {@link AcrolinxPlugin.requestGlobalCheck|requestGlobalCheck} is called.
+ * 11) The acrolinxPlugin must call {@link AcrolinxSidebar.checkGlobal|checkGlobal} to perform a check.
  *
- * 10) The acrolinxPlugin must call {@link AcrolinxSidebar.checkGlobal|checkGlobal} to perform a check.
- *
- * 11) When the check finished, {@link AcrolinxPlugin.onCheckResult|onCheckResult} is called and the sidebar displays
+ * 12) When the check finished, {@link AcrolinxPlugin.onCheckResult|onCheckResult} is called and the sidebar displays
  * cards for the issues.
  *
- * 12) If the user clicks a card {@link AcrolinxPlugin.selectRanges|selectRanges} is called
+ * 13) If the user clicks a card {@link AcrolinxPlugin.selectRanges|selectRanges} is called
  *
- * 13) When the user selects a replacement {@link AcrolinxPlugin.replaceRanges|replaceRanges} is called.
+ * 14) When the user selects a replacement {@link AcrolinxPlugin.replaceRanges|replaceRanges} is called.
  *
  * For a minimal integration (not feature complete) you must implement {@link requestInit}, {@link requestGlobalCheck},
- * {@link configure}, {@link selectRanges} and {@link replaceRanges}.
+ * {@link selectRanges} and {@link replaceRanges}.
  *
  * @packageDocumentation
  */
@@ -277,15 +274,6 @@ export interface CheckOptions {
   inputFormat?: string;
 
   /**
-   * Set this to true, if the documents content is base64 encoded and gzipped.
-   *
-   * Note that you only can set this setting and encode and compress your document content, if the sidebar supports this
-   * function. Check {@link AcrolinxPluginConfiguration.supported} which is pushed
-   * via {@link AcrolinxPlugin.configure}.
-   */
-  base64EncodedGzipped?: boolean;
-
-  /**
    * Only supported with Acrolinx Platform 2019.10 (Sidebar version 14.16) and newer.
    */
   externalContent?: ExternalContent;
@@ -457,25 +445,6 @@ export interface SidebarError {
   message: string;
 }
 
-
-/**
- * The plugin configuration tells the plugin what the sidebar supports.
- */
-export interface AcrolinxPluginConfiguration {
-  /**
-   * The capabilities of the sidebar
-   */
-  supported: {
-    /**
-     * If true, you can send the document content in
-     * {@link AcrolinxSidebar.checkGlobal}
-     * base64 encoded and gzipped. In that case, you must set
-     * {@link CheckOptions.base64EncodedGzipped} to true.
-     */
-    base64EncodedGzippedDocumentContent: boolean;
-  };
-}
-
 /**
  * The sidebar will provide this interface in window.acrolinxSidebar.
  */
@@ -560,19 +529,9 @@ export interface AcrolinxPlugin {
   /**
    * The sidebar has finished initialization. Now the sidebar is ready for checking.
    *
-   * Note: Usually you should wait for the configuration to be pushed via: acrolinxPlugin.configure() to know the
-   *       capabilities of the sidebar.
-   *
    *  @param finishResult Can contain an error if the initialization failed.
    */
   onInitFinished(finishResult: InitResult): void;
-
-  /**
-   *  The AcrolinxSidebar pushes the latest configuration to the AcrolinxPlugin.
-   *
-   *  @param configuration Contains capabilities.
-   */
-  configure(configuration: AcrolinxPluginConfiguration): void;
 
   /**
    * The check button has been pushed and the AcrolinxPlugin is requested to call AcrolinxSidebar.checkGlobal().

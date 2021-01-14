@@ -445,6 +445,19 @@ export interface SidebarError {
   message: string;
 }
 
+export enum MessageType {
+  success = 'success',
+  info = 'info',
+  warning = 'warning',
+  error = 'error'
+}
+
+export interface Message {
+  type: MessageType;
+  title?: string;
+  text: string;
+}
+
 /**
  * The sidebar will provide this interface in window.acrolinxSidebar.
  */
@@ -513,6 +526,15 @@ export interface AcrolinxSidebar {
    * @param checkedDocumentRanges The ranges of previous performed checks.
    */
   onVisibleRangesChanged(checkedDocumentRanges: CheckedDocumentRange[]): void;
+
+
+  /**
+   * Show a message in the Sidebar.
+   * Experimental.
+   * Only supported with Acrolinx Platform 2021.2 (Sidebar version 14.28) and newer.
+   * @param message The message to show.
+   */
+  showMessage(message: Message): void;
 }
 
 

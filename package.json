@@ -1,7 +1,7 @@
 {
   "name": "@acrolinx/sidebar-interface",
   "description": "The interface of the Acrolinx Sidebar",
-  "version": "14.16.1",
+  "version": "14.28.0",
   "license": "Apache-2.0",
   "author": "Acrolinx",
   "url": "https://www.acrolinx.com",
@@ -15,16 +15,21 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
+  "// devDependencies comments": {
+    "typedoc": "Newer versions (>=0.20) don't display the @packageDocumentation."
+  },
   "devDependencies": {
-    "tslint": "^5.20.1",
-    "typedoc": "^0.15.8",
-    "typescript": "^3.8.3"
+    "@typescript-eslint/eslint-plugin": "^4.13.0",
+    "@typescript-eslint/parser": "^4.13.0",
+    "eslint": "^7.17.0",
+    "typedoc": "^0.19.2",
+    "typescript": "^4.1.3"
   },
   "scripts": {
     "build": "tsc",
-    "tslint": "tslint -p tsconfig.json",
-    "travis": "npm run tslint && npm run build",
-    "jenkins": "npm run tslint && npm run build",
+    "lint": "eslint . --ext .ts",
+    "travis": "npm run lint && npm run build",
+    "jenkins": "npm run lint && npm run build",
     "gendoc": "typedoc"
   }
 }

@@ -55,6 +55,8 @@
  *
  * For a minimal integration (not feature complete) you must implement {@link requestInit}, {@link requestGlobalCheck},
  * {@link configure}, {@link selectRanges} and {@link replaceRanges}.
+ *
+ * @packageDocumentation
  */
 
 /**

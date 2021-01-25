@@ -527,11 +527,9 @@ export interface AcrolinxSidebar {
    */
   onVisibleRangesChanged(checkedDocumentRanges: CheckedDocumentRange[]): void;
 
-
   /**
    * Show a message in the Sidebar.
-   * Experimental.
-   * Only supported with Acrolinx Platform 2021.2 (Sidebar version 14.28) and newer.
+   * Supported since Acrolinx Platform 2021.2 (Sidebar version 14.28).
    * @param message The message to show.
    */
   showMessage(message: Message): void;

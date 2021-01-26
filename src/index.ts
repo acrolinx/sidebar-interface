@@ -151,6 +151,11 @@ export interface InitParameters extends SidebarConfiguration {
   supported?: {
     checkSelection?: boolean;
     showServerSelector?: boolean;
+
+    /**
+     * Tells the Sidebar, that this integration supports AcrolinxPlugin.log
+     */
+    log?: boolean;
   };
 
   uiMode?: UiMode;
@@ -458,6 +463,19 @@ export interface Message {
   text: string;
 }
 
+export enum LogEntryType {
+  debug = 'debug',
+  info = 'info',
+  warning = 'warning',
+  error = 'error'
+}
+
+export interface LogEntry {
+  type: LogEntryType,
+  message: string;
+  details: Array<unknown>;
+}
+
 /**
  * The sidebar will provide this interface in window.acrolinxSidebar.
  */
@@ -614,6 +632,8 @@ export interface AcrolinxPlugin {
   openLogFile?(): void;
 
   showServerSelector?(): void;
+
+  log?(logEntry: LogEntry): void;
 }
 
 

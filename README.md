@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/acrolinx/sidebar-interface.svg?branch=master)](https://travis-ci.org/acrolinx/sidebar-interface)
 
-This project contains the [Acrolinx Sidebar Interface documentation](https://acrolinx.github.io/sidebar-interface/) 
+This project contains the [Acrolinx Sidebar Interface documentation](https://acrolinx.github.io/sidebar-interface/)
 generated from its [TypeScript source](./src/index.ts).
 
 For the most use cases you don't have to use the Acrolinx Sidebar Interface directly, but can use instead the [Acrolinx SDKs](https://github.com/acrolinx?q=sdk).
@@ -43,7 +43,6 @@ but can use instead the [Acrolinx Sidebar JavaScript SDK](https://github.com/acr
 ```bash
 npm install @acrolinx/sidebar-interface
 ```
-
 
 ## License
 

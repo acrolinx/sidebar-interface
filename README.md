@@ -1,7 +1,5 @@
 # Acrolinx Sidebar Interface
 
-[![Build Status](https://travis-ci.org/acrolinx/sidebar-interface.svg?branch=master)](https://travis-ci.org/acrolinx/sidebar-interface)
-
 This project contains the [Acrolinx Sidebar Interface documentation](https://acrolinx.github.io/sidebar-interface/)
 generated from its [TypeScript source](./src/index.ts).
 
@@ -43,6 +41,20 @@ but can use instead the [Acrolinx Sidebar JavaScript SDK](https://github.com/acr
 ```bash
 npm install @acrolinx/sidebar-interface
 ```
+
+## (Internal Only) Create a new release
+
+Follow the instruction for [creating a release in Github](https://docs.github.com/en/github/administering-a-repository/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release)
+
+
+1. On GitHub, navigate to the main page of the repository.
+2. To the right of the list of files, click Releases or Latest release.
+3. Click Draft a new release.
+4. Type a version number for your release. (This version will also be set for the release artifact.)
+5. Use the drop-down menu to select the master branch for the release.
+6. Add title and description.
+7. If you're ready to publicize your release, click Publish release.
+8. Github Workflow will take care of publishing the new version to npm.
 
 ## License
 

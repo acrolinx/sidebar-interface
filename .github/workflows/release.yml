@@ -1,10 +1,8 @@
 name: Deploy npm package
 
 on:
-  push:
-    # Pattern matched against refs/tags
-    tags:
-      - '*'
+  release:
+    types: [ created ]
 
 jobs:
   publish-npm:
@@ -18,6 +16,7 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm run build
+      - run: npm version ${{ github.event.release.tag_name }}
       - run: npm publish --access public
         # TODO publish to GitHub pages
         env:

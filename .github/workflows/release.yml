@@ -1,8 +1,10 @@
 name: Deploy npm package
 
 on:
-  release:
-    types: [ created ]
+  push:
+    # Pattern matched against refs/tags
+    tags:
+      - '*'
 
 jobs:
   publish-npm:

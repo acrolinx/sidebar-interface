@@ -46,15 +46,15 @@ npm install @acrolinx/sidebar-interface
 
 Follow the instruction for [creating a release in Github](https://docs.github.com/en/github/administering-a-repository/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release)
 
-
-1. On GitHub, navigate to the main page of the repository.
-2. To the right of the list of files, click Releases or Latest release.
-3. Click Draft a new release.
-4. Type a version number for your release. (This version will also be set for the release artifact.)
-5. Use the drop-down menu to select the master branch for the release.
-6. Add title and description.
-7. If you're ready to publicize your release, click Publish release.
-8. Github Workflow will take care of publishing the new version to npm.
+1. Make sure you have updated the version number in the package.json.
+2. On GitHub, navigate to the main page of the repository.
+3. To the right of the list of files, click Releases or Latest release.
+4. Click Draft a new release.
+5. Type a version number for your release. 
+6. Use the drop-down menu to select the master branch for the release.
+7. Add title and description.
+8. If you're ready to publicize your release, click Publish release.
+9. Github Workflow will take care of publishing the new version to npm.
 
 ## License
 

@@ -151,6 +151,7 @@ export interface InitParameters extends SidebarConfiguration {
   supported?: {
     checkSelection?: boolean;
     showServerSelector?: boolean;
+    supportsDitaChecks?: boolean;
 
     /**
      * Tells the Sidebar, that this integration supports AcrolinxPlugin.log
@@ -266,6 +267,11 @@ export const SoftwareComponentCategory = {
 
 export interface RequestGlobalCheckOptions {
   selection: boolean;
+}
+
+export interface DitaRequestOptions {
+  ditaTopicReference: string;
+  topicDisplayName: string;
 }
 
 /**
@@ -528,6 +534,26 @@ export interface AcrolinxSidebar {
    */
   checkGlobal(documentContent: string, options: CheckOptions): Check;
 
+  /**
+   * Experimental for Dita Checking
+   * @param ditaReferences
+   */
+  initDitaCheck?(ditaReferences: DitaRequestOptions[]): void;
+
+  /**
+   * Experimental for Dita Checking
+   * @param ditaTopicReference
+   * @param documentContent
+   * @param options
+   */
+  checkDitaTopic?(ditaTopicReference: string, documentContent: string, options: CheckOptions):void;
+
+  /**
+   * Experimental for Dita Checking
+   * @param ditaTopicReference
+   */
+  onDitaTopicLoaded?(ditaTopicReference: string): void;
+
   onGlobalCheckRejected(): void;
 
   /**
@@ -577,6 +603,18 @@ export interface AcrolinxPlugin {
    * and contains a hint if the plugin should send the current selection when calling AcrolinxSidebar.checkGlobal().
    */
   requestGlobalCheck(options?: RequestGlobalCheckOptions): void;
+
+  /**
+   * Experimental for Dita Checking
+   * @param ditaTopicReference
+   */
+  requestCheckDitaTopic?(ditaTopicReference: string): void;
+
+  /**
+   * Experimental for Dita Checking
+   * @param ditaTopicReference
+   */
+  openDitaTopic?(ditaTopicReference: string): void;
 
   /**
    * Notifies the AcrolinxPlugin that a check has finished. If a global check has been performed, that's a good time

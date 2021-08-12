@@ -272,6 +272,7 @@ export interface RequestGlobalCheckOptions {
 export interface BatchCheckRequestOptions {
   reference: string;
   displayName: string;
+}
 
 /**
  * Check options describe how the server should handle the checked document.
@@ -545,7 +546,7 @@ export interface AcrolinxSidebar {
    * @param documentContent
    * @param options
    */
-  checkReferenceInBackground?(reference: string, documentContent: string, options: CheckOptions):void;
+  checkReferenceInBackground?(reference: string, documentContent: string, options: CheckOptions): void;
 
   /**
    * Experimental for Dita Checking
@@ -680,6 +681,8 @@ export interface AcrolinxPlugin {
  */
 export interface AcrolinxStorage {
   getItem(key: string): string | null;
+
   removeItem(key: string): void;
+
   setItem(key: string, data: string): void;
 }

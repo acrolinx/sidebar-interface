@@ -151,7 +151,7 @@ export interface InitParameters extends SidebarConfiguration {
   supported?: {
     checkSelection?: boolean;
     showServerSelector?: boolean;
-    supportsDitaChecks?: boolean;
+    supportsBatchChecks?: boolean;
 
     /**
      * Tells the Sidebar, that this integration supports AcrolinxPlugin.log
@@ -269,10 +269,9 @@ export interface RequestGlobalCheckOptions {
   selection: boolean;
 }
 
-export interface DitaRequestOptions {
-  ditaTopicReference: string;
-  topicDisplayName: string;
-}
+export interface BatchCheckRequestOptions {
+  reference: string;
+  displayName: string;
 
 /**
  * Check options describe how the server should handle the checked document.
@@ -536,9 +535,9 @@ export interface AcrolinxSidebar {
 
   /**
    * Inits a check for a bunch of files that runs in the background
-   * @param ditaReferences
+   * @param references
    */
-  initBatchCheck?(ditaReferences: DitaRequestOptions[]): void;
+  initBatchCheck?(references: BatchCheckRequestOptions[]): void;
 
   /**
    * Experimental for Dita Checking

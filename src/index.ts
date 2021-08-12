@@ -535,24 +535,24 @@ export interface AcrolinxSidebar {
   checkGlobal(documentContent: string, options: CheckOptions): Check;
 
   /**
-   * Experimental for Dita Checking
+   * Inits a check for a bunch of files that runs in the background
    * @param ditaReferences
    */
-  initDitaCheck?(ditaReferences: DitaRequestOptions[]): void;
+  initBatchCheck?(ditaReferences: DitaRequestOptions[]): void;
 
   /**
    * Experimental for Dita Checking
-   * @param ditaTopicReference
+   * @param reference
    * @param documentContent
    * @param options
    */
-  checkDitaTopic?(ditaTopicReference: string, documentContent: string, options: CheckOptions):void;
+  checkReferenceInBackground?(reference: string, documentContent: string, options: CheckOptions):void;
 
   /**
    * Experimental for Dita Checking
-   * @param ditaTopicReference
+   * @param reference
    */
-  onDitaTopicLoaded?(ditaTopicReference: string): void;
+  onReferenceLoadedInEditor?(reference: string): void;
 
   onGlobalCheckRejected(): void;
 
@@ -606,15 +606,15 @@ export interface AcrolinxPlugin {
 
   /**
    * Experimental for Dita Checking
-   * @param ditaTopicReference
+   * @param reference
    */
-  requestCheckDitaTopic?(ditaTopicReference: string): void;
+  requestBackgroundCheckForRef?(reference: string): void;
 
   /**
    * Experimental for Dita Checking
-   * @param ditaTopicReference
+   * @param reference
    */
-  openDitaTopic?(ditaTopicReference: string): void;
+  openReferenceInEditor?(reference: string): void | Promise<void>;
 
   /**
    * Notifies the AcrolinxPlugin that a check has finished. If a global check has been performed, that's a good time

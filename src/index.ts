@@ -529,10 +529,10 @@ export interface AcrolinxSidebar {
    * ```
    *
    * @param documentContent The document you want to check.
-   * @return Object containing The ID of the check.
+   * @return Object containing The ID of the check or a Promise.
    *
    */
-  checkGlobal(documentContent: string, options: CheckOptions): Check;
+  checkGlobal(documentContent: string, options: CheckOptions): Check | Promise<Check | void>;
 
   /**
    * Inits a check for a bunch of files that runs in the background

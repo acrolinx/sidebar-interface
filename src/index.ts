@@ -617,6 +617,11 @@ export interface AcrolinxPlugin {
   openReferenceInEditor?(reference: string): void | Promise<void>;
 
   /**
+   * Experimental for Dita Checking
+   */
+  openMapInEditor?(): void;
+
+  /**
    * Notifies the AcrolinxPlugin that a check has finished. If a global check has been performed, that's a good time
    * to clean up states belonging to previous checks.
    */

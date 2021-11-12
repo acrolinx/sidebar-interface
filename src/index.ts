@@ -267,10 +267,11 @@ export const SoftwareComponentCategory = {
 
 export interface RequestGlobalCheckOptions {
   selection: boolean;
+  batchCheck: boolean;
 }
 
 export interface BatchCheckRequestOptions {
-  reference: string;
+  documentIdentifier: string;
   displayName: string;
 }
 
@@ -532,27 +533,21 @@ export interface AcrolinxSidebar {
    * @return Object containing The ID of the check or a Promise.
    *
    */
-  checkGlobal(documentContent: string, options: CheckOptions): Check | Promise<Check | void>;
+  checkGlobal(documentContent: string, options: CheckOptions): Check;
 
   /**
    * Inits a check for a bunch of files that runs in the background
-   * @param references
+   * @param documentIdentifiers
    */
-  initBatchCheck?(references: BatchCheckRequestOptions[]): void;
+  initBatchCheck?(documentIdentifiers: BatchCheckRequestOptions[]): void;
 
   /**
    * Experimental for Dita Checking
-   * @param reference
+   * @param documentIdentifier
    * @param documentContent
    * @param options
    */
-  checkReferenceInBackground?(reference: string, documentContent: string, options: CheckOptions): void;
-
-  /**
-   * Experimental for Dita Checking
-   * @param reference
-   */
-  onReferenceLoadedInEditor?(reference: string): void;
+  checkDocumentInBackground?(documentIdentifier: string, documentContent: string, options: CheckOptions): void;
 
   onGlobalCheckRejected(): void;
 
@@ -604,22 +599,22 @@ export interface AcrolinxPlugin {
    */
   requestGlobalCheck(options?: RequestGlobalCheckOptions): void;
 
-  /**
-   * Experimental for Dita Checking
-   * @param reference
-   */
-  requestBackgroundCheckForRef?(reference: string): void;
 
   /**
-   * Experimental for Dita Checking
-   * @param reference
+   * A batch check has started and the AcrolinxPlugin is requested to call AcrolinxSidebar.checkDocumentInBackground()
+   * for the document under check.
+   * 
+   * @param documentIdentifier
    */
-  openReferenceInEditor?(reference: string): void | Promise<void>;
+  requestBackgroundCheckForDocument?(documentIdentifier: string): void;
 
   /**
-   * Experimental for Dita Checking
+   * A batch check has started and the user has clicked on a card. The AcrolinxPlugin is requested to open the corresponding document.
+   * 
+   * @param documentIdentifier
    */
-  openMapInEditor?(): void;
+  openDocumentInEditor?(documentIdentifier: string): void | Promise<void>;
+
 
   /**
    * Notifies the AcrolinxPlugin that a check has finished. If a global check has been performed, that's a good time

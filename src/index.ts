@@ -542,12 +542,13 @@ export interface AcrolinxSidebar {
   initBatchCheck?(documentIdentifiers: BatchCheckRequestOptions[]): void;
 
   /**
-   * Experimental for Dita Checking
+   * Initiates a check for the document with the given documentIdentifier.
+   * 
    * @param documentIdentifier
    * @param documentContent
    * @param options
    */
-  checkDocumentInBackground?(documentIdentifier: string, documentContent: string, options: CheckOptions): void;
+  checkDocumentInBatch?(documentIdentifier: string, documentContent: string, options: CheckOptions): void;
 
   onGlobalCheckRejected(): void;
 
@@ -601,12 +602,12 @@ export interface AcrolinxPlugin {
 
 
   /**
-   * A batch check has started and the AcrolinxPlugin is requested to call AcrolinxSidebar.checkDocumentInBackground()
+   * A batch check has started and the AcrolinxPlugin is requested to call AcrolinxSidebar.checkDocumentInBatch()
    * for the document under check.
    * 
    * @param documentIdentifier
    */
-  requestBackgroundCheckForDocument?(documentIdentifier: string): void;
+   requestCheckForDocumentInBatch?(documentIdentifier: string): void;
 
   /**
    * A batch check has started and the user has clicked on a card. The AcrolinxPlugin is requested to open the corresponding document.

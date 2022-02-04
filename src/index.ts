@@ -15,7 +15,7 @@
  */
 
 /**
- * This document describes the interface of the Acrolinx Sidebar with Batch checks. Batch checks are supported from sidebar version 15.0 and platform version 2022.01
+ * This document describes the interface of the Acrolinx Sidebar. Batch checking feature is only supported from sidebar version 15.0 and platform version 2022.01.
  *
  * Let's understand how the typical bootstrapping of an integration and the Acrolinx Sidebar works:
  *

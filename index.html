@@ -60,7 +60,7 @@
         </li>
         <li>
           After initializing, the Sidebar will call <code>configure</code> and push the latest
-          configuration to the integration.
+          configuration to the integration. <br><br>
 
           <img src="./media/init-sidebar-plugin.png" alt="Initializing Acrolinx Integration and Sidebar." />
         </li>
@@ -74,7 +74,7 @@
         The acrolinxPlugin must call <code>checkGlobal</code> to perform a check.
 
       </li>
-      <li> When the check finished, <code>onCheckResult</code> is called and the Sidebar displays cards for the issues.
+      <li> When the check finished, <code>onCheckResult</code> is called and the Sidebar displays cards for the issues. <br><br>
 
         <img src="./media/checking.png" alt="Checking with Acrolinx Integration and Sidebar." />
       </li>
@@ -87,6 +87,30 @@
         <li>When the user clicks on a replacement the Sidebar will call <code>replaceRanges</code>.
         </li>
       </ul>
+
+      <h2>Batch Checking</h2>
+      <li>
+        If batch checking is supported and the user pushes the button "Batch Check" (in the Acrolinx Sidebar), <br>
+         <code>requestGlobalCheck</code> is called with option <code>batchCheck</code> set to true.
+      </li>
+      <li>
+        To start a batch check, the acrolinxPlugin must call <code>initBatchCheck</code> with the list of document identifiers <br> that need to be checked.
+
+      </li>
+      <li>
+        For each document to be checked, <code>requestCheckForDocumentInBatch</code> is called.
+      </li>      
+      <li>
+        The acrolinxPlugin must then call <code>checkDocumentInBatch</code> to perform a check. The sidebar displays a card  <br> for each document and the check process is started. <br><br>
+
+        <img src="./media/batch-checking.png" alt="Batch checking with Acrolinx Integration and Sidebar." />
+      </li>  
+      <li>
+        When the user clicks on a card, <code>openDocumentInEditor</code> is called to request the acrolinxPlugin to open the document.
+      </li>      
+
+      <br><br>
+
       <div>
         These are the most important interactions between the Acrolinx Sidebar and your integration.
         See: <a href="pluginDoc/modules/_index_.html">Acrolinx Sidebar API Reference</a>

@@ -15,7 +15,7 @@
  */
 
 /**
- * This document describes the interface of the Acrolinx Sidebar with Batch checks. Batch checks are supported from sidebar version 15.0.0.
+ * This document describes the interface of the Acrolinx Sidebar with Batch checks. Batch checks are supported from sidebar version 15.0 and platform version 2022.01
  *
  * Let's understand how the typical bootstrapping of an integration and the Acrolinx Sidebar works:
  *
@@ -39,25 +39,25 @@
  * 7) Once the init process has finished, the plug-in will be notified:
  *    {@link AcrolinxPlugin.onInitFinished|onInitFinished}.
  *
- * 10) If the user pushes the button "Check" or "Batch Check", {@link AcrolinxPlugin.requestGlobalCheck|requestGlobalCheck} is called.
- *     In case of a batch check, the flag batchCheck in options is set to true.
+ * 8) If the user pushes the button "Check" or "Batch Check", {@link AcrolinxPlugin.requestGlobalCheck|requestGlobalCheck} is called.
+ *     In case of a batch check, the flag {@link RequestGlobalCheckOptions.batchCheck|batchCheck} in options is set to true.
  *
- * 11) The acrolinxPlugin must call {@link AcrolinxSidebar.checkGlobal|checkGlobal} to perform a check 
- *     or {@link AcrolinxSidebar.initBatchCheck|initBatchCheck} with a list of document identifiers to perform a batch check. 
+ * 9) The acrolinxPlugin must call {@link AcrolinxSidebar.checkGlobal|checkGlobal} to perform a check.
+ *    In case of a batch check, the acrolinxPlugin must call  {@link AcrolinxSidebar.initBatchCheck|initBatchCheck} with a list of document identifiers to be checked. 
  *
- * 12) When the check finished, {@link AcrolinxPlugin.onCheckResult|onCheckResult} is called and the sidebar displays
+ * 10) When a regular check has finished, {@link AcrolinxPlugin.onCheckResult|onCheckResult} is called and the sidebar displays
  * cards for the issues.
  *
- * 13) If the user clicks a card {@link AcrolinxPlugin.selectRanges|selectRanges} is called
+ * 11) If the user clicks a card after a regular check, {@link AcrolinxPlugin.selectRanges|selectRanges} is called
  *
- * 14) When the user selects a replacement {@link AcrolinxPlugin.replaceRanges|replaceRanges} is called.
+ * 12) When the user selects a replacement after a regular check, {@link AcrolinxPlugin.replaceRanges|replaceRanges} is called.
  * 
- * 15) In case of a batch check, the sidebar will request the integration to initiate a check for each document identifier 
+ * 13) When a batch check is started, the sidebar will request the integration to initiate a check for each document identifier 
  *     by calling {@link AcrolinxPlugin.requestCheckForDocumentInBatch|requestCheckForDocumentInBatch}.
  * 
- * 16) The acrolinxPlugin must call {@link AcrolinxSidebar.checkDocumentInBatch|checkDocumentInBatch} to perform a check on a given document.
+ * 14) The acrolinxPlugin must then call {@link AcrolinxSidebar.checkDocumentInBatch|checkDocumentInBatch} to perform a check on a given document.
  * 
- * 17) If the user clicks a card {@link AcrolinxPlugin.openDocumentInEditor} is called.
+ * 15) If the user clicks a card after the batch check has started, {@link AcrolinxPlugin.openDocumentInEditor|openDocumentInEditor} is called requesting acrolinxPlugin to open the document.
  *
  * For a minimal integration (not feature complete) you must implement {@link requestInit}, {@link requestGlobalCheck},
  * {@link selectRanges} and {@link replaceRanges}.
@@ -546,16 +546,16 @@ export interface AcrolinxSidebar {
 
   /**
    * Perform a batch check of the document components.
-   * @param documentIdentifiers
+   * @param documentIdentifiers List of document identifiers on which to perfrom a batch check.
    */
   initBatchCheck?(documentIdentifiers: BatchCheckRequestOptions[]): void;
 
   /**
-   * Initiates a check for the document with the given documentIdentifier.
+   * Initiates a check for the document with the given document identifier.
    * 
-   * @param documentIdentifier
-   * @param documentContent
-   * @param options
+   * @param documentIdentifier Identifier for the document to be checked.
+   * @param documentContent The document to be checked.
+   * @param options Check options.
    */
   checkDocumentInBatch?(documentIdentifier: string, documentContent: string, options: CheckOptions): void;
 
@@ -616,14 +616,14 @@ export interface AcrolinxPlugin {
    * A batch check has started and the AcrolinxPlugin is requested to call AcrolinxSidebar.checkDocumentInBatch()
    * for the document under check.
    * 
-   * @param documentIdentifier
+   * @param documentIdentifier Identifier of the document to be checked.
    */
    requestCheckForDocumentInBatch?(documentIdentifier: string): void;
 
   /**
    * A batch check has started and the user has clicked on a card. The AcrolinxPlugin is requested to open the corresponding document.
    * 
-   * @param documentIdentifier
+   * @param documentIdentifier Identifier of the document to open.
    */
   openDocumentInEditor?(documentIdentifier: string): void | Promise<void>;
 

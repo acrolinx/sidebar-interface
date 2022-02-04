@@ -58,6 +58,9 @@
 			<a href="_index_.acrolinxsidebar.html" class="tsd-kind-icon">Acrolinx<wbr>Sidebar</a>
 			<ul>
 				<li class=" tsd-kind-method tsd-parent-kind-interface">
+					<a href="_index_.acrolinxsidebar.html#checkdocumentinbatch" class="tsd-kind-icon">check<wbr>Document<wbr>InBatch</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-interface">
 					<a href="_index_.acrolinxsidebar.html#checkglobal" class="tsd-kind-icon">check<wbr>Global</a>
 				</li>
 				<li class=" tsd-kind-method tsd-parent-kind-interface">
@@ -65,6 +68,9 @@
 				</li>
 				<li class=" tsd-kind-method tsd-parent-kind-interface">
 					<a href="_index_.acrolinxsidebar.html#init" class="tsd-kind-icon">init</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-interface">
+					<a href="_index_.acrolinxsidebar.html#initbatchcheck" class="tsd-kind-icon">init<wbr>Batch<wbr>Check</a>
 				</li>
 				<li class=" tsd-kind-method tsd-parent-kind-interface">
 					<a href="_index_.acrolinxsidebar.html#invalidateranges" class="tsd-kind-icon">invalidate<wbr>Ranges</a>
@@ -82,6 +88,9 @@
 		</li>
 		<li class=" tsd-kind-interface tsd-parent-kind-module">
 			<a href="_index_.acrolinxstorage.html" class="tsd-kind-icon">Acrolinx<wbr>Storage</a>
+		</li>
+		<li class=" tsd-kind-interface tsd-parent-kind-module">
+			<a href="_index_.batchcheckrequestoptions.html" class="tsd-kind-icon">Batch<wbr>Check<wbr>Request<wbr>Options</a>
 		</li>
 		<li class=" tsd-kind-interface tsd-parent-kind-module">
 			<a href="_index_.check.html" class="tsd-kind-icon">Check</a>
@@ -190,9 +199,11 @@
 					<section class="tsd-index-section ">
 						<h3>Methods</h3>
 						<ul class="tsd-index-list">
+							<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_index_.acrolinxsidebar.html#checkdocumentinbatch" class="tsd-kind-icon">check<wbr>Document<wbr>InBatch</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_index_.acrolinxsidebar.html#checkglobal" class="tsd-kind-icon">check<wbr>Global</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_index_.acrolinxsidebar.html#configure" class="tsd-kind-icon">configure</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_index_.acrolinxsidebar.html#init" class="tsd-kind-icon">init</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_index_.acrolinxsidebar.html#initbatchcheck" class="tsd-kind-icon">init<wbr>Batch<wbr>Check</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_index_.acrolinxsidebar.html#invalidateranges" class="tsd-kind-icon">invalidate<wbr>Ranges</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_index_.acrolinxsidebar.html#onglobalcheckrejected" class="tsd-kind-icon">on<wbr>Global<wbr>Check<wbr>Rejected</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_index_.acrolinxsidebar.html#onvisiblerangeschanged" class="tsd-kind-icon">on<wbr>Visible<wbr>Ranges<wbr>Changed</a></li>
@@ -205,6 +216,49 @@
 		<section class="tsd-panel-group tsd-member-group ">
 			<h2>Methods</h2>
 			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+				<a name="checkdocumentinbatch" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagOptional">Optional</span> check<wbr>Document<wbr>InBatch</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+					<li class="tsd-signature tsd-kind-icon">check<wbr>Document<wbr>InBatch<span class="tsd-signature-symbol">(</span>documentIdentifier<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, documentContent<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">: </span><a href="_index_.checkoptions.html" class="tsd-signature-type">CheckOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/acrolinx/sidebar-interface/blob/cbefc40/src/index.ts#L560">index.ts:560</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Initiates a check for the document with the given document identifier.</p>
+							</div>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>documentIdentifier: <span class="tsd-signature-type">string</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>Identifier for the document to be checked.</p>
+								</div>
+							</li>
+							<li>
+								<h5>documentContent: <span class="tsd-signature-type">string</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>The document to be checked.</p>
+								</div>
+							</li>
+							<li>
+								<h5>options: <a href="_index_.checkoptions.html" class="tsd-signature-type">CheckOptions</a></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>Check options.</p>
+								</div>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
 				<a name="checkglobal" class="tsd-anchor"></a>
 				<h3>check<wbr>Global</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
@@ -214,7 +268,7 @@
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/acrolinx/sidebar-interface/blob/209a834/src/index.ts#L529">index.ts:529</a></li>
+								<li>Defined in <a href="https://github.com/acrolinx/sidebar-interface/blob/cbefc40/src/index.ts#L545">index.ts:545</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -242,7 +296,7 @@
 							</li>
 						</ul>
 						<h4 class="tsd-returns-title">Returns <a href="_index_.check.html" class="tsd-signature-type">Check</a></h4>
-						<p>Object containing The ID of the check.</p>
+						<p>Object containing the ID of the check.</p>
 					</li>
 				</ul>
 			</section>
@@ -256,7 +310,7 @@
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/acrolinx/sidebar-interface/blob/209a834/src/index.ts#L510">index.ts:510</a></li>
+								<li>Defined in <a href="https://github.com/acrolinx/sidebar-interface/blob/cbefc40/src/index.ts#L526">index.ts:526</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -288,7 +342,7 @@
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/acrolinx/sidebar-interface/blob/209a834/src/index.ts#L498">index.ts:498</a></li>
+								<li>Defined in <a href="https://github.com/acrolinx/sidebar-interface/blob/cbefc40/src/index.ts#L514">index.ts:514</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -316,6 +370,37 @@
 				</ul>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+				<a name="initbatchcheck" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagOptional">Optional</span> init<wbr>Batch<wbr>Check</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+					<li class="tsd-signature tsd-kind-icon">init<wbr>Batch<wbr>Check<span class="tsd-signature-symbol">(</span>documentIdentifiers<span class="tsd-signature-symbol">: </span><a href="_index_.batchcheckrequestoptions.html" class="tsd-signature-type">BatchCheckRequestOptions</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/acrolinx/sidebar-interface/blob/cbefc40/src/index.ts#L551">index.ts:551</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Perform a batch check of the document components.</p>
+							</div>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>documentIdentifiers: <a href="_index_.batchcheckrequestoptions.html" class="tsd-signature-type">BatchCheckRequestOptions</a><span class="tsd-signature-symbol">[]</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>List of document identifiers on which to perfrom a batch check.</p>
+								</div>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
 				<a name="invalidateranges" class="tsd-anchor"></a>
 				<h3>invalidate<wbr>Ranges</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
@@ -325,7 +410,7 @@
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/acrolinx/sidebar-interface/blob/209a834/src/index.ts#L539">index.ts:539</a></li>
+								<li>Defined in <a href="https://github.com/acrolinx/sidebar-interface/blob/cbefc40/src/index.ts#L570">index.ts:570</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -357,7 +442,7 @@
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/acrolinx/sidebar-interface/blob/209a834/src/index.ts#L531">index.ts:531</a></li>
+								<li>Defined in <a href="https://github.com/acrolinx/sidebar-interface/blob/cbefc40/src/index.ts#L562">index.ts:562</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -374,7 +459,7 @@
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/acrolinx/sidebar-interface/blob/209a834/src/index.ts#L546">index.ts:546</a></li>
+								<li>Defined in <a href="https://github.com/acrolinx/sidebar-interface/blob/cbefc40/src/index.ts#L577">index.ts:577</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -405,7 +490,7 @@
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/acrolinx/sidebar-interface/blob/209a834/src/index.ts#L553">index.ts:553</a></li>
+								<li>Defined in <a href="https://github.com/acrolinx/sidebar-interface/blob/cbefc40/src/index.ts#L584">index.ts:584</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">

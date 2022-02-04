@@ -61,6 +61,9 @@
 			<a href="../interfaces/_index_.acrolinxstorage.html" class="tsd-kind-icon">Acrolinx<wbr>Storage</a>
 		</li>
 		<li class=" tsd-kind-interface tsd-parent-kind-module">
+			<a href="../interfaces/_index_.batchcheckrequestoptions.html" class="tsd-kind-icon">Batch<wbr>Check<wbr>Request<wbr>Options</a>
+		</li>
+		<li class=" tsd-kind-interface tsd-parent-kind-module">
 			<a href="../interfaces/_index_.check.html" class="tsd-kind-icon">Check</a>
 		</li>
 		<li class=" tsd-kind-interface tsd-parent-kind-module">
@@ -148,7 +151,7 @@
 		<section class="tsd-panel tsd-comment">
 			<div class="tsd-comment tsd-typography">
 				<div class="lead">
-					<p>This document describes the interface of the Acrolinx Sidebar.</p>
+					<p>This document describes the interface of the Acrolinx Sidebar. Batch checking feature is only supported from sidebar version 15.0 and platform version 2022.01.</p>
 				</div>
 				<p>Let&#39;s understand how the typical bootstrapping of an integration and the Acrolinx Sidebar works:</p>
 				<ol>
@@ -170,16 +173,25 @@
 					<li><p>Once the init process has finished, the plug-in will be notified:
 						<a href="../interfaces/_index_.acrolinxplugin.html#oninitfinished">onInitFinished</a>.</p>
 					</li>
-					<li><p>If the user pushes the button &quot;Check&quot;, <a href="../interfaces/_index_.acrolinxplugin.html#requestglobalcheck">requestGlobalCheck</a> is called.</p>
+					<li><p>If the user pushes the button &quot;Check&quot; or &quot;Batch Check&quot;, <a href="../interfaces/_index_.acrolinxplugin.html#requestglobalcheck">requestGlobalCheck</a> is called.
+						In case of a batch check, the flag <a href="../interfaces/_index_.requestglobalcheckoptions.html#batchcheck">batchCheck</a> in options is set to true.</p>
 					</li>
-					<li><p>The acrolinxPlugin must call <a href="../interfaces/_index_.acrolinxsidebar.html#checkglobal">checkGlobal</a> to perform a check.</p>
+					<li><p>The acrolinxPlugin must call <a href="../interfaces/_index_.acrolinxsidebar.html#checkglobal">checkGlobal</a> to perform a check.
+						In case of a batch check, the acrolinxPlugin must call  <a href="../interfaces/_index_.acrolinxsidebar.html#initbatchcheck">initBatchCheck</a> with a list of document identifiers to be checked.</p>
 					</li>
-					<li><p>When the check finished, <a href="../interfaces/_index_.acrolinxplugin.html#oncheckresult">onCheckResult</a> is called and the sidebar displays
+					<li><p>When a regular check has finished, <a href="../interfaces/_index_.acrolinxplugin.html#oncheckresult">onCheckResult</a> is called and the sidebar displays
 						cards for the issues.</p>
 					</li>
-					<li><p>If the user clicks a card <a href="../interfaces/_index_.acrolinxplugin.html#selectranges">selectRanges</a> is called</p>
+					<li><p>If the user clicks a card after a regular check, <a href="../interfaces/_index_.acrolinxplugin.html#selectranges">selectRanges</a> is called</p>
 					</li>
-					<li><p>When the user selects a replacement <a href="../interfaces/_index_.acrolinxplugin.html#replaceranges">replaceRanges</a> is called.</p>
+					<li><p>When the user selects a replacement after a regular check, <a href="../interfaces/_index_.acrolinxplugin.html#replaceranges">replaceRanges</a> is called.</p>
+					</li>
+					<li><p>When a batch check is started, the sidebar will request the integration to initiate a check for each document identifier
+						by calling <a href="../interfaces/_index_.acrolinxplugin.html#requestcheckfordocumentinbatch">requestCheckForDocumentInBatch</a>.</p>
+					</li>
+					<li><p>The acrolinxPlugin must then call <a href="../interfaces/_index_.acrolinxsidebar.html#checkdocumentinbatch">checkDocumentInBatch</a> to perform a check on a given document.</p>
+					</li>
+					<li><p>If the user clicks a card after the batch check has started, <a href="../interfaces/_index_.acrolinxplugin.html#opendocumentineditor">openDocumentInEditor</a> is called requesting acrolinxPlugin to open the document.</p>
 					</li>
 				</ol>
 				<p>For a minimal integration (not feature complete) you must implement <a href="../interfaces/_index_.acrolinxplugin.html#requestinit">requestInit</a>, <a href="../interfaces/_index_.acrolinxplugin.html#requestglobalcheck">requestGlobalCheck</a>,
@@ -203,6 +215,7 @@
 							<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/_index_.acrolinxplugin.html" class="tsd-kind-icon">Acrolinx<wbr>Plugin</a></li>
 							<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/_index_.acrolinxsidebar.html" class="tsd-kind-icon">Acrolinx<wbr>Sidebar</a></li>
 							<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/_index_.acrolinxstorage.html" class="tsd-kind-icon">Acrolinx<wbr>Storage</a></li>
+							<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/_index_.batchcheckrequestoptions.html" class="tsd-kind-icon">Batch<wbr>Check<wbr>Request<wbr>Options</a></li>
 							<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/_index_.check.html" class="tsd-kind-icon">Check</a></li>
 							<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/_index_.checkinformationkeyvaluepair.html" class="tsd-kind-icon">Check<wbr>Information<wbr>Key<wbr>Value<wbr>Pair</a></li>
 							<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/_index_.checkoptions.html" class="tsd-kind-icon">Check<wbr>Options</a></li>
@@ -253,7 +266,7 @@
 				<div class="tsd-signature tsd-kind-icon">Checked<wbr>Document<wbr>Range<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_index_.checkeddocumentpart.html" class="tsd-signature-type">CheckedDocumentPart</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/acrolinx/sidebar-interface/blob/209a834/src/index.ts#L383">index.ts:383</a></li>
+						<li>Defined in <a href="https://github.com/acrolinx/sidebar-interface/blob/cbefc40/src/index.ts#L399">index.ts:399</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -263,7 +276,7 @@
 				<div class="tsd-signature tsd-kind-icon">Document<wbr>Range<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/acrolinx/sidebar-interface/blob/209a834/src/index.ts#L304">index.ts:304</a></li>
+						<li>Defined in <a href="https://github.com/acrolinx/sidebar-interface/blob/cbefc40/src/index.ts#L320">index.ts:320</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -273,7 +286,7 @@
 				<div class="tsd-signature tsd-kind-icon">Invalid<wbr>Document<wbr>Part<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_index_.checkeddocumentpart.html" class="tsd-signature-type">CheckedDocumentPart</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/acrolinx/sidebar-interface/blob/209a834/src/index.ts#L382">index.ts:382</a></li>
+						<li>Defined in <a href="https://github.com/acrolinx/sidebar-interface/blob/cbefc40/src/index.ts#L398">index.ts:398</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -283,7 +296,7 @@
 				<div class="tsd-signature tsd-kind-icon">Ui<wbr>Mode<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"default"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"noOptions"</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/acrolinx/sidebar-interface/blob/209a834/src/index.ts#L200">index.ts:200</a></li>
+						<li>Defined in <a href="https://github.com/acrolinx/sidebar-interface/blob/cbefc40/src/index.ts#L210">index.ts:210</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -296,7 +309,7 @@
 				<div class="tsd-signature tsd-kind-icon">Software<wbr>Component<wbr>Category<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/acrolinx/sidebar-interface/blob/209a834/src/index.ts#L246">index.ts:246</a></li>
+						<li>Defined in <a href="https://github.com/acrolinx/sidebar-interface/blob/cbefc40/src/index.ts#L256">index.ts:256</a></li>
 					</ul>
 				</aside>
 				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -305,7 +318,7 @@
 					<div class="tsd-signature tsd-kind-icon">DEFAULT<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;DEFAULT&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/acrolinx/sidebar-interface/blob/209a834/src/index.ts#L258">index.ts:258</a></li>
+							<li>Defined in <a href="https://github.com/acrolinx/sidebar-interface/blob/cbefc40/src/index.ts#L268">index.ts:268</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -321,7 +334,7 @@
 					<div class="tsd-signature tsd-kind-icon">DETAIL<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;DETAIL&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/acrolinx/sidebar-interface/blob/209a834/src/index.ts#L264">index.ts:264</a></li>
+							<li>Defined in <a href="https://github.com/acrolinx/sidebar-interface/blob/cbefc40/src/index.ts#L274">index.ts:274</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -337,7 +350,7 @@
 					<div class="tsd-signature tsd-kind-icon">MAIN<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;MAIN&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/acrolinx/sidebar-interface/blob/209a834/src/index.ts#L252">index.ts:252</a></li>
+							<li>Defined in <a href="https://github.com/acrolinx/sidebar-interface/blob/cbefc40/src/index.ts#L262">index.ts:262</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">

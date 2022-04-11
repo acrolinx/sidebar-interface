@@ -417,6 +417,24 @@ export interface Match {
    * Available since the 5.2.1 server.
    */
   locations?: MatchLocation[];
+
+  externalContentMatches?: ExternalContentMatch[];
+
+
+}
+
+export interface ExternalContentMatch {
+  id: string;
+  type: ExternalContentType;
+  range: [number, number];
+  externalContentMatches: ExternalContentMatch[]
+}
+
+export enum ExternalContentType {
+  entities = 'entities',
+  textReplacements = 'textReplacements',
+  ditaReferences = 'ditaReferences',
+  xincludeReferences = 'xincludeReferences'
 }
 
 export interface MatchLocation {

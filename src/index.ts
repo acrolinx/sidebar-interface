@@ -419,8 +419,6 @@ export interface Match {
   locations?: MatchLocation[];
 
   externalContentMatches?: ExternalContentMatch[];
-
-
 }
 
 export interface ExternalContentMatch {

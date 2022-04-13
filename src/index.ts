@@ -340,6 +340,12 @@ export interface ExternalContent {
   entities?: ExternalContentField[];
   ditaReferences?: ExternalContentField[];
   xincludeReferences? : ExternalContentField[];
+  references?: AugmentedExternalContent[];
+}
+
+export interface AugmentedExternalContent {
+  type: string,
+  value: ExternalContentField[],
 }
 
 /**
@@ -418,22 +424,19 @@ export interface Match {
    */
   locations?: MatchLocation[];
 
+  /**
+   * Available since the x.x server.
+   */
   externalContentMatches?: ExternalContentMatch[];
 }
 
 export interface ExternalContentMatch {
   id: string;
-  type: ExternalContentType;
+  type: string;
   range: [number, number];
-  externalContentMatches: ExternalContentMatch[]
+  externalContentMatches?: ExternalContentMatch[]
 }
 
-export enum ExternalContentType {
-  entities = 'entities',
-  textReplacements = 'textReplacements',
-  ditaReferences = 'ditaReferences',
-  xincludeReferences = 'xincludeReferences'
-}
 
 export interface MatchLocation {
   type: string;

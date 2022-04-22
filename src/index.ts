@@ -399,8 +399,17 @@ export interface CheckedDocumentPart {
    * A range are two numbers: A start offset and an end offset.
    */
   range: [number, number];
+
+  externalContent?: CheckedExternalDocumentPart[];
 }
 
+export interface CheckedExternalDocumentPart {
+
+  id: string;
+
+  range: [number, number];
+
+}
 
 export type InvalidDocumentPart = CheckedDocumentPart;
 export type CheckedDocumentRange = CheckedDocumentPart;
@@ -430,10 +439,12 @@ export interface Match {
   externalContentMatches?: ExternalContentMatch[];
 }
 
+//TODO: Use sdk.js ?
 export interface ExternalContentMatch {
   id: string;
   type: string;
-  range: [number, number];
+  originalBegin: number;
+  originalEnd: number;
   externalContentMatches?: ExternalContentMatch[]
 }
 

@@ -400,15 +400,7 @@ export interface CheckedDocumentPart {
    */
   range: [number, number];
 
-  externalContent?: CheckedExternalDocumentPart[];
-}
-
-export interface CheckedExternalDocumentPart {
-
-  id: string;
-
-  range: [number, number];
-
+  externalContent?: ExternalContentMatch[];
 }
 
 export type InvalidDocumentPart = CheckedDocumentPart;

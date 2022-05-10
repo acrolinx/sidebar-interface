@@ -426,12 +426,11 @@ export interface Match {
   locations?: MatchLocation[];
 
   /**
-   * Available since the x.x server.
+   * Available since the 2022.05 server.
    */
   externalContentMatches?: ExternalContentMatch[];
 }
 
-//TODO: Use sdk.js ?
 export interface ExternalContentMatch {
   id: string;
   type: string;

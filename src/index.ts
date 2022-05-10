@@ -340,6 +340,12 @@ export interface ExternalContent {
   entities?: ExternalContentField[];
   ditaReferences?: ExternalContentField[];
   xincludeReferences? : ExternalContentField[];
+  references?: AugmentedExternalContent[];
+}
+
+export interface AugmentedExternalContent {
+  type: string,
+  value: ExternalContentField[],
 }
 
 /**
@@ -393,8 +399,9 @@ export interface CheckedDocumentPart {
    * A range are two numbers: A start offset and an end offset.
    */
   range: [number, number];
-}
 
+  externalContent?: ExternalContentMatch[];
+}
 
 export type InvalidDocumentPart = CheckedDocumentPart;
 export type CheckedDocumentRange = CheckedDocumentPart;
@@ -417,7 +424,21 @@ export interface Match {
    * Available since the 5.2.1 server.
    */
   locations?: MatchLocation[];
+
+  /**
+   * Available since the 2022.05 server.
+   */
+  externalContentMatches?: ExternalContentMatch[];
 }
+
+export interface ExternalContentMatch {
+  id: string;
+  type: string;
+  originalBegin: number;
+  originalEnd: number;
+  externalContentMatches?: ExternalContentMatch[]
+}
+
 
 export interface MatchLocation {
   type: string;

@@ -733,7 +733,7 @@ export interface AcrolinxPlugin {
   * Notifies the AcrolinxPlugin that a reuse prefix search has failed.
   * @param prefix  The reuse prefix on which the search has failed.
   */
-  onReusePrefixSearchError(prefix: String): void;
+  onReusePrefixSearchError(prefix: string): void;
 
   /**
   * the user has clicked on the button to open reuse panel. The AcrolinxPlugin is requested to open the reuse panel.

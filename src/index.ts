@@ -514,6 +514,16 @@ export interface LogEntry {
   details: Array<unknown>;
 }
 
+export interface ReuseSuggestion {
+  preferredPhrase: string,
+  description: string
+}
+
+export interface ReuseSearchResult {
+  requestId: string,
+  results: ReuseSuggestion[]
+}
+
 /**
  * The sidebar will provide this interface in window.acrolinxSidebar.
  */
@@ -604,6 +614,12 @@ export interface AcrolinxSidebar {
    * @param message The message to show.
    */
   showMessage(message: Message): void;
+
+  /**
+   * Perform a search for suggestions with the given prefix .
+   * @param prefix The prefix on which to perform a search for suggestions.
+   */
+  reusePrefixSearch(prefix: string): void;
 }
 
 
@@ -706,6 +722,23 @@ export interface AcrolinxPlugin {
   showServerSelector?(): void;
 
   log?(logEntry: LogEntry): void;
+
+    /**
+   * Notifies the AcrolinxPlugin that a reuse prefix search has finished.
+   * @param reuseSearchResult  The reuse prefix search result.
+   */
+  onReusePrefixSearchResult(reuseSearchResult: ReuseSearchResult): void;
+
+  /**
+  * Notifies the AcrolinxPlugin that a reuse prefix search has failed.
+  * @param prefix  The reuse prefix on which the search has failed.
+  */
+  onReusePrefixSearchError(prefix: String): void;
+
+  /**
+  * the user has clicked on the button to open reuse panel. The AcrolinxPlugin is requested to open the reuse panel.
+  */
+  launchReusePanel(): void;
 }
 
 

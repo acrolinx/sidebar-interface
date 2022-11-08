@@ -619,7 +619,7 @@ export interface AcrolinxSidebar {
    * Perform a search for suggestions with the given prefix .
    * @param prefix The prefix on which to perform a search for suggestions.
    */
-  reusePrefixSearch(prefix: string): void;
+  reusePrefixSearch?(prefix: string): void;
 }
 
 
@@ -727,18 +727,18 @@ export interface AcrolinxPlugin {
    * Notifies the AcrolinxPlugin that a reuse prefix search has finished.
    * @param reuseSearchResult  The reuse prefix search result.
    */
-  onReusePrefixSearchResult(reuseSearchResult: ReuseSearchResult): void;
+  onReusePrefixSearchResult?(reuseSearchResult: ReuseSearchResult): void;
 
   /**
   * Notifies the AcrolinxPlugin that a reuse prefix search has failed.
   * @param prefix  The reuse prefix on which the search has failed.
   */
-  onReusePrefixSearchError(prefix: string): void;
+  onReusePrefixSearchError?(prefix: string): void;
 
   /**
   * the user has clicked on the button to open reuse panel. The AcrolinxPlugin is requested to open the reuse panel.
   */
-  launchReusePanel(): void;
+  launchReusePanel?(): void;
 }
 
 

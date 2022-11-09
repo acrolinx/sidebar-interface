@@ -738,7 +738,7 @@ export interface AcrolinxPlugin {
   /**
   * the user has clicked on the button to open reuse panel. The AcrolinxPlugin is requested to open the reuse panel.
   */
-  launchReusePanel?(): void;
+  openReusePanel?(): void;
 }
 
 

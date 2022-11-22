@@ -161,6 +161,7 @@ export interface InitParameters extends SidebarConfiguration {
     checkSelection?: boolean;
     showServerSelector?: boolean;
     supportsBatchChecks?: boolean;
+    supportsReuse?: boolean;
 
     /**
      * Tells the Sidebar, that this integration supports AcrolinxPlugin.log

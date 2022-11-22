@@ -754,6 +754,13 @@ export interface AcrolinxPlugin {
   * @param uiLanguage   The selected UI language
   */
   onUiLanguageChanged?(uiLanguage: UILanguage): void;
+
+  /**
+  * Notifies the AcrolinxPlugin that the user has selected a target that supports reuse.
+  * @param supportsReuse   True if the selected target supports reuse, false otherwise.
+  */
+  onTargetChanged?(supportsReuse: boolean): void;
+
 }
 
 

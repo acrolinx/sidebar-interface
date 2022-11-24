@@ -525,15 +525,6 @@ export interface LiveSearchResult {
   results: LiveSuggestion[]
 }
 
-export enum UILanguage {
-  Default = 'default',
-  English = 'en',
-  German = 'de',
-  French = 'fr',
-  Japanese = 'ja',
-  Swedish = 'sv'
-}
-
 /**
  * The sidebar will provide this interface in window.acrolinxSidebar.
  */
@@ -754,7 +745,7 @@ export interface AcrolinxPlugin {
   * Notifies the AcrolinxPlugin that the user has changed the UI langauge in the sidebar.
   * @param uiLanguage   The selected UI language
   */
-  onUiLanguageChanged?(uiLanguage: UILanguage): void;
+  onUiLanguageChanged?(uiLanguage: string): void;
 
   /**
   * Notifies the AcrolinxPlugin that the user has selected a target that supports live.

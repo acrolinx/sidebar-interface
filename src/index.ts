@@ -161,7 +161,7 @@ export interface InitParameters extends SidebarConfiguration {
     checkSelection?: boolean;
     showServerSelector?: boolean;
     supportsBatchChecks?: boolean;
-    supportsReuse?: boolean;
+    supportsLive?: boolean;
 
     /**
      * Tells the Sidebar, that this integration supports AcrolinxPlugin.log
@@ -515,14 +515,14 @@ export interface LogEntry {
   details: Array<unknown>;
 }
 
-export interface ReuseSuggestion {
+export interface LiveSuggestion {
   preferredPhrase: string,
   description: string
 }
 
-export interface ReuseSearchResult {
+export interface LiveSearchResult {
   requestId: string,
-  results: ReuseSuggestion[]
+  results: LiveSuggestion[]
 }
 
 export enum UILanguage {
@@ -626,10 +626,10 @@ export interface AcrolinxSidebar {
   showMessage(message: Message): void;
 
   /**
-   * Perform a search for suggestions with the given prefix .
-   * @param prefix The prefix on which to perform a search for suggestions.
+   * Perform a search for suggestions with the given query .
+   * @param query The query on which to perform a search for suggestions.
    */
-  reusePrefixSearch?(prefix: string): void;
+   liveSearch?(query: string): void;
 }
 
 
@@ -734,21 +734,21 @@ export interface AcrolinxPlugin {
   log?(logEntry: LogEntry): void;
 
     /**
-   * Notifies the AcrolinxPlugin that a reuse prefix search has finished.
-   * @param reuseSearchResult  The reuse prefix search result.
+   * Notifies the AcrolinxPlugin that a live search has finished.
+   * @param liveSearchResult  The live search result.
    */
-  onReusePrefixSearchResult?(reuseSearchResult: ReuseSearchResult): void;
+  onLiveSearchResults?(liveSearchResult: LiveSearchResult): void;
 
   /**
-  * Notifies the AcrolinxPlugin that a reuse prefix search has failed.
-  * @param prefix  The reuse prefix on which the search has failed.
+  * Notifies the AcrolinxPlugin that live search for an input query has failed.
+  * @param query  The query on which the search has failed.
   */
-  onReusePrefixSearchError?(prefix: string): void;
+  onLiveSearchFailed?(query: string): void;
 
   /**
-  * the user has clicked on the button to open reuse panel. The AcrolinxPlugin is requested to open the reuse panel.
+  * the user has clicked on the button to open live panel. The AcrolinxPlugin is requested to open the live panel.
   */
-  openReusePanel?(): void;
+  openLivePanel?(): void;
 
   /**
   * Notifies the AcrolinxPlugin that the user has changed the UI langauge in the sidebar.
@@ -757,10 +757,10 @@ export interface AcrolinxPlugin {
   onUiLanguageChanged?(uiLanguage: UILanguage): void;
 
   /**
-  * Notifies the AcrolinxPlugin that the user has selected a target that supports reuse.
-  * @param supportsReuse   True if the selected target supports reuse, false otherwise.
+  * Notifies the AcrolinxPlugin that the user has selected a target that supports live.
+  * @param supportsLive   True if the selected target supports live, false otherwise.
   */
-  onTargetChanged?(supportsReuse: boolean): void;
+  onTargetChanged?(supportsLive: boolean): void;
 
 }
 

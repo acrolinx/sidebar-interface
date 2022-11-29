@@ -743,9 +743,9 @@ export interface AcrolinxPlugin {
 
   /**
   * Notifies the AcrolinxPlugin that the user has changed the UI langauge in the sidebar.
-  * @param uiLanguage   The selected UI language
+  * @param UILanguage   The selected UI language
   */
-  onUiLanguageChanged?(uiLanguage: string): void;
+  onUILanguageChanged?(UILanguage: string): void;
 
   /**
   * Notifies the AcrolinxPlugin that the user has selected a target that supports live.

@@ -161,6 +161,7 @@ export interface InitParameters extends SidebarConfiguration {
     checkSelection?: boolean;
     showServerSelector?: boolean;
     supportsBatchChecks?: boolean;
+    supportsLive?: boolean;
 
     /**
      * Tells the Sidebar, that this integration supports AcrolinxPlugin.log
@@ -514,6 +515,16 @@ export interface LogEntry {
   details: Array<unknown>;
 }
 
+export interface LiveSuggestion {
+  preferredPhrase: string,
+  description: string
+}
+
+export interface LiveSearchResult {
+  requestId: string,
+  results: LiveSuggestion[]
+}
+
 /**
  * The sidebar will provide this interface in window.acrolinxSidebar.
  */
@@ -604,6 +615,12 @@ export interface AcrolinxSidebar {
    * @param message The message to show.
    */
   showMessage(message: Message): void;
+
+  /**
+   * Perform a search for suggestions with the given query .
+   * @param query The query on which to perform a search for suggestions.
+   */
+   liveSearch?(query: string): void;
 }
 
 
@@ -706,6 +723,36 @@ export interface AcrolinxPlugin {
   showServerSelector?(): void;
 
   log?(logEntry: LogEntry): void;
+
+    /**
+   * Notifies the AcrolinxPlugin that a live search has finished.
+   * @param liveSearchResult  The live search result.
+   */
+  onLiveSearchResults?(liveSearchResult: LiveSearchResult): void;
+
+  /**
+  * Notifies the AcrolinxPlugin that live search for an input query has failed.
+  * @param query  The query on which the search has failed.
+  */
+  onLiveSearchFailed?(query: string): void;
+
+  /**
+  * the user has clicked on the button to open live panel. The AcrolinxPlugin is requested to open the live panel.
+  */
+  openLivePanel?(): void;
+
+  /**
+  * Notifies the AcrolinxPlugin that the user has changed the UI langauge in the sidebar.
+  * @param UILanguage   The selected UI language
+  */
+  onUILanguageChanged?(UILanguage: string): void;
+
+  /**
+  * Notifies the AcrolinxPlugin that the user has selected a target that supports live.
+  * @param supportsLive   True if the selected target supports live, false otherwise.
+  */
+  onTargetChanged?(supportsLive: boolean): void;
+
 }
 
 

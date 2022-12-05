@@ -19,9 +19,9 @@
     "src"
   ],
   "typedocOptions": {
-    "mode": "modules",
+    "entryPoints": "./src/index.ts",
     "out": "pluginDoc",
-    "theme": "minimal",
+    "theme": "default",
     "readme": "none"
   }
 }

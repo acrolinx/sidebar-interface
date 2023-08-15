@@ -13,3 +13,6 @@ tmp
 
 **/.baseDir.ts
 /dist/
+
+# Eclipse
+.project

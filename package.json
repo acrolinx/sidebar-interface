@@ -1,7 +1,7 @@
 {
   "name": "@acrolinx/sidebar-interface",
   "description": "The interface of the Acrolinx Sidebar",
-  "version": "15.3.0",
+  "version": "15.3.1",
   "license": "Apache-2.0",
   "author": "Acrolinx",
   "url": "https://www.acrolinx.com",

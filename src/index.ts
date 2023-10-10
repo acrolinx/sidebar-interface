@@ -340,7 +340,7 @@ export interface ExternalContent {
   textReplacements?: ExternalContentField[];
   entities?: ExternalContentField[];
   ditaReferences?: ExternalContentField[];
-  xincludeReferences? : ExternalContentField[];
+  xincludeReferences?: ExternalContentField[];
   references?: AugmentedExternalContent[];
 }
 
@@ -470,6 +470,7 @@ export interface OpenWindowParameters {
  */
 export interface InitResult {
   error?: SidebarError;
+  properties?: { [key: string]: any; }
 }
 
 
@@ -620,7 +621,7 @@ export interface AcrolinxSidebar {
    * Perform a search for suggestions with the given query .
    * @param query The query on which to perform a search for suggestions.
    */
-   liveSearch?(query: string): void;
+  liveSearch?(query: string): void;
 }
 
 
@@ -657,7 +658,7 @@ export interface AcrolinxPlugin {
    * 
    * @param documentIdentifier Identifier of the document to be checked.
    */
-   requestCheckForDocumentInBatch?(documentIdentifier: string): void;
+  requestCheckForDocumentInBatch?(documentIdentifier: string): void;
 
   /**
    * A batch check has started and the user has clicked on a card. The AcrolinxPlugin is requested to open the corresponding document.
@@ -724,10 +725,10 @@ export interface AcrolinxPlugin {
 
   log?(logEntry: LogEntry): void;
 
-    /**
-   * Notifies the AcrolinxPlugin that a live search has finished.
-   * @param liveSearchResult  The live search result.
-   */
+  /**
+ * Notifies the AcrolinxPlugin that a live search has finished.
+ * @param liveSearchResult  The live search result.
+ */
   onLiveSearchResults?(liveSearchResult: LiveSearchResult): void;
 
   /**

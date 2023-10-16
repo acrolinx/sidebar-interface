@@ -470,7 +470,7 @@ export interface OpenWindowParameters {
  */
 export interface InitResult {
   error?: SidebarError;
-  properties?: { [key: string]: any; }
+  integrationProperties?: { [key: string]: any; }
 }
 
 

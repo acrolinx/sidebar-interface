@@ -206,6 +206,18 @@ export interface InitParameters extends SidebarConfiguration {
    * New since sidebar version 14.11.0.
    */
   accessToken?: string;
+
+  /**
+   * The sidebar uses this optional KeyCloak access token to sign in to Acrolinx One.
+   * Available with Acrolinx One
+   */
+  keyCloakAccessToken?: string;
+
+  /**
+   * The sidebar uses this optional KeyCloak refresh token to fetch new access token.
+   * Available with Acrolinx One
+   */
+  keyCloakRefreshToken?: string;
 }
 
 export type UiMode = 'default' | 'noOptions';

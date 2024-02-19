@@ -208,7 +208,7 @@ export interface InitParameters extends SidebarConfiguration {
   accessToken?: string;
 
   /**
-   * KeyClaok tokens used used by sidebar to authenticate in Acrolinx One
+   * KeyCloak tokens used used by sidebar to authenticate in Acrolinx One
    * Available: Acrolinx One Cloud
    */
   keyCloakTokens?: KeyCloakTokens;

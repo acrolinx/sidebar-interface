@@ -470,6 +470,8 @@ export interface OpenWindowParameters {
  */
 export interface InitResult {
   error?: SidebarError;
+  
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   integrationProperties?: { [key: string]: any; }
 }
 

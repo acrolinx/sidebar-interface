@@ -15,9 +15,6 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
-  "// devDependencies comments": {
-    "typedoc": "Newer versions (>=0.20) don't display the @packageDocumentation."
-  },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^7.6.0",
     "@typescript-eslint/parser": "^7.6.0",

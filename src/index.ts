@@ -148,6 +148,7 @@ export interface InitParameters extends SidebarConfiguration {
   logFileLocation?: string;
 
   /**
+   * @deprecated This property isn’t needed anymore, and will be removed in future.
    * This property is only effective if the Sidebar start page is used.
    * It prevents the user to connect to a Sidebar with an lower version.
    * Example values: '14.4.2' or '14.4'

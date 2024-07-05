@@ -11,28 +11,22 @@ on:
   schedule:
     - cron: "* 3 * * *"
   workflow_dispatch:
-    inputs:
-      reason:
-        description: "Trigger Comment (Optional)"
-        required: false
-        default: "Manual Workflow Run"
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [18.x, 20.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
       - uses: actions/checkout@v4
-      - name: Use Node.js ${{ matrix.node-version }}
+
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
-      - run: npm ci
-      - run: npm run lint
-      - run: npm run build
+          node-version: 20
+          cache: 'npm'
 
+      - run: npm ci
+
+      - run: npm run lint
+
+      - run: npm run build

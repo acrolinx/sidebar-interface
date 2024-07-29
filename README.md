@@ -23,15 +23,15 @@ for consulting and getting your integration certified.
 This sample works with a test license on an internal Acrolinx URL.
 This license is only meant for demonstration and developing purposes.
 Once you finished your integration, you'll have to get a license for your integration from Acrolinx.
-  
+
 Acrolinx offers different other SDKs, and examples for developing integrations.
 
 Before you start developing your own integration, you might benefit from looking into:
 
-* [Build With Acrolinx](https://support.acrolinx.com/hc/en-us/categories/10209837818770-Build-With-Acrolinx),
-* the [Guidance for the Development of Acrolinx Integrations](https://github.com/acrolinx/acrolinx-coding-guidance),
-* the [Acrolinx SDKs](https://github.com/acrolinx?q=sdk), and
-* the [Acrolinx Demo Projects](https://github.com/acrolinx?q=demo).
+- [Build With Acrolinx](https://support.acrolinx.com/hc/en-us/categories/10209837818770-Build-With-Acrolinx),
+- the [Guidance for the Development of Acrolinx Integrations](https://github.com/acrolinx/acrolinx-coding-guidance),
+- the [Acrolinx SDKs](https://github.com/acrolinx?q=sdk), and
+- the [Acrolinx Demo Projects](https://github.com/acrolinx?q=demo).
 
 ### Installation Via NPM
 
@@ -50,7 +50,7 @@ Follow the instruction for [creating a release in Github](https://docs.github.co
 2. On GitHub, navigate to the main page of the repository.
 3. To the right of the list of files, click Releases or Latest release.
 4. Click Draft a new release.
-5. Type a version number for your release. 
+5. Type a version number for your release.
 6. Use the drop-down menu to select the master branch for the release.
 7. Add title and description.
 8. If you're ready to publicize your release, click Publish release.

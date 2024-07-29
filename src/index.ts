@@ -43,7 +43,7 @@
  *     In case of a batch check, the flag {@link RequestGlobalCheckOptions.batchCheck|batchCheck} in options is set to true.
  *
  * 9) The acrolinxPlugin must call {@link AcrolinxSidebar.checkGlobal|checkGlobal} to perform a check.
- *    In case of a batch check, the acrolinxPlugin must call  {@link AcrolinxSidebar.initBatchCheck|initBatchCheck} with a list of document identifiers to be checked. 
+ *    In case of a batch check, the acrolinxPlugin must call  {@link AcrolinxSidebar.initBatchCheck|initBatchCheck} with a list of document identifiers to be checked.
  *
  * 10) When a regular check has finished, {@link AcrolinxPlugin.onCheckResult|onCheckResult} is called and the sidebar displays
  * cards for the issues.
@@ -51,12 +51,12 @@
  * 11) If the user clicks a card after a regular check, {@link AcrolinxPlugin.selectRanges|selectRanges} is called
  *
  * 12) When the user selects a replacement after a regular check, {@link AcrolinxPlugin.replaceRanges|replaceRanges} is called.
- * 
- * 13) When a batch check is started, the sidebar will request the integration to initiate a check for each document identifier 
+ *
+ * 13) When a batch check is started, the sidebar will request the integration to initiate a check for each document identifier
  *     by calling {@link AcrolinxPlugin.requestCheckForDocumentInBatch|requestCheckForDocumentInBatch}.
- * 
+ *
  * 14) The acrolinxPlugin must then call {@link AcrolinxSidebar.checkDocumentInBatch|checkDocumentInBatch} to perform a check on a given document.
- * 
+ *
  * 15) If the user clicks a card after the batch check has started, {@link AcrolinxPlugin.openDocumentInEditor|openDocumentInEditor} is called requesting acrolinxPlugin to open the document.
  *
  * For a minimal integration (not feature complete) you must implement {@link requestInit}, {@link requestGlobalCheck},
@@ -81,7 +81,6 @@ export interface SidebarConfiguration {
  * @interface InitParameters
  */
 export interface InitParameters extends SidebarConfiguration {
-
   /**
    * These provide information about your integration and other client software components to display them
    * in the sidebars about dialog. In addition they are used for analytics.
@@ -209,7 +208,7 @@ export interface InitParameters extends SidebarConfiguration {
   accessToken?: string;
 }
 
-export type UiMode = 'default' | 'noOptions';
+export type UiMode = "default" | "noOptions";
 
 export interface CsrfConfig {
   url: string;
@@ -254,26 +253,25 @@ export interface SoftwareComponent {
   category?: string;
 }
 
-
 export const SoftwareComponentCategory = {
   /**
    * There should be exactly one MAIN component.
    * This information is used to identify your client on the server.
    * Version information about this components might be displayed more prominently.
    */
-  MAIN: 'MAIN',
+  MAIN: "MAIN",
 
   /**
    * Version information about such components are displayed in the about
    * dialog.
    */
-  DEFAULT: 'DEFAULT',
+  DEFAULT: "DEFAULT",
 
   /**
    * Version information about such components are displayed in the detail section of the about
    * dialog or not at all.
    */
-  DETAIL: 'DETAIL'
+  DETAIL: "DETAIL",
 };
 
 export interface RequestGlobalCheckOptions {
@@ -346,8 +344,8 @@ export interface ExternalContent {
 }
 
 export interface AugmentedExternalContent {
-  type: string,
-  value: ExternalContentField[],
+  type: string;
+  value: ExternalContentField[];
 }
 
 /**
@@ -370,7 +368,6 @@ export interface CheckResult {
    */
   inputFormat?: string;
 }
-
 
 /**
  * CheckInformationKeyValuePair has the check information sent by the server.
@@ -408,7 +405,6 @@ export interface CheckedDocumentPart {
 export type InvalidDocumentPart = CheckedDocumentPart;
 export type CheckedDocumentRange = CheckedDocumentPart;
 
-
 export interface Match {
   content: string;
 
@@ -438,16 +434,14 @@ export interface ExternalContentMatch {
   type: string;
   originalBegin: number;
   originalEnd: number;
-  externalContentMatches?: ExternalContentMatch[]
+  externalContentMatches?: ExternalContentMatch[];
 }
-
 
 export interface MatchLocation {
   type: string;
   title?: string;
   values: { [key: string]: string };
 }
-
 
 /**
  * Content and offsets belonging to a previous performed check, which must be replaced by the replacement.
@@ -461,7 +455,6 @@ export interface MatchWithReplacement extends Match {
   replacement: string;
 }
 
-
 export interface OpenWindowParameters {
   url: string;
 }
@@ -471,11 +464,10 @@ export interface OpenWindowParameters {
  */
 export interface InitResult {
   error?: SidebarError;
-  
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  integrationProperties?: { [key: string]: any; }
-}
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  integrationProperties?: { [key: string]: any };
+}
 
 export interface SidebarError {
   /**
@@ -494,10 +486,10 @@ export interface SidebarError {
 }
 
 export enum MessageType {
-  success = 'success',
-  info = 'info',
-  warning = 'warning',
-  error = 'error'
+  success = "success",
+  info = "info",
+  warning = "warning",
+  error = "error",
 }
 
 export interface Message {
@@ -507,26 +499,26 @@ export interface Message {
 }
 
 export enum LogEntryType {
-  debug = 'debug',
-  info = 'info',
-  warning = 'warning',
-  error = 'error'
+  debug = "debug",
+  info = "info",
+  warning = "warning",
+  error = "error",
 }
 
 export interface LogEntry {
-  type: LogEntryType,
+  type: LogEntryType;
   message: string;
   details: Array<unknown>;
 }
 
 export interface LiveSuggestion {
-  preferredPhrase: string,
-  description: string
+  preferredPhrase: string;
+  description: string;
 }
 
 export interface LiveSearchResult {
-  requestId: string,
-  results: LiveSuggestion[]
+  requestId: string;
+  results: LiveSuggestion[];
 }
 
 /**
@@ -589,12 +581,16 @@ export interface AcrolinxSidebar {
 
   /**
    * Initiates a check for the document with the given document identifier.
-   * 
+   *
    * @param documentIdentifier Identifier for the document to be checked.
    * @param documentContent The document to be checked.
    * @param options Check options.
    */
-  checkDocumentInBatch?(documentIdentifier: string, documentContent: string, options: CheckOptions): void;
+  checkDocumentInBatch?(
+    documentIdentifier: string,
+    documentContent: string,
+    options: CheckOptions,
+  ): void;
 
   onGlobalCheckRejected(): void;
 
@@ -627,7 +623,6 @@ export interface AcrolinxSidebar {
   liveSearch?(query: string): void;
 }
 
-
 /**
  * The plug-in should provide this interface in window.acrolinxPlugin.
  * These functions are called by the AcrolinxSidebar.
@@ -649,27 +644,25 @@ export interface AcrolinxPlugin {
    * The check button has been pushed and the AcrolinxPlugin is requested to call AcrolinxSidebar.checkGlobal().
    * If the plugin supports checkSelection (InitParameters.supported.checkSelection), option "selection" will be set
    * and contains a hint if the plugin should send the current selection when calling AcrolinxSidebar.checkGlobal().
-   * Similarly if the plugin supports batchCheck (InitParameters.supported.supportsBatchChecks), option "batchCheck" 
+   * Similarly if the plugin supports batchCheck (InitParameters.supported.supportsBatchChecks), option "batchCheck"
    * will be set and the plugin should call AcrolinxSidebar.initBatchCheck().
    */
   requestGlobalCheck(options?: RequestGlobalCheckOptions): void;
 
-
   /**
    * A batch check has started and the AcrolinxPlugin is requested to call AcrolinxSidebar.checkDocumentInBatch()
    * for the document under check.
-   * 
+   *
    * @param documentIdentifier Identifier of the document to be checked.
    */
   requestCheckForDocumentInBatch?(documentIdentifier: string): void;
 
   /**
    * A batch check has started and the user has clicked on a card. The AcrolinxPlugin is requested to open the corresponding document.
-   * 
+   *
    * @param documentIdentifier Identifier of the document to open.
    */
   openDocumentInEditor?(documentIdentifier: string): void | Promise<void>;
-
 
   /**
    * Notifies the AcrolinxPlugin that a check has finished. If a global check has been performed, that's a good time
@@ -712,7 +705,10 @@ export interface AcrolinxPlugin {
    * @param checkId  The id of the check. You get the id as result of checkGlobal.
    * @param matchesWithReplacements The parts of the document, which should be replaced and its replacements.
    */
-  replaceRanges(checkId: string, matchesWithReplacements: MatchWithReplacement[]): void;
+  replaceRanges(
+    checkId: string,
+    matchesWithReplacements: MatchWithReplacement[],
+  ): void;
 
   /**
    * @param openWindowParameters
@@ -729,36 +725,34 @@ export interface AcrolinxPlugin {
   log?(logEntry: LogEntry): void;
 
   /**
- * Notifies the AcrolinxPlugin that a live search has finished.
- * @param liveSearchResult  The live search result.
- */
+   * Notifies the AcrolinxPlugin that a live search has finished.
+   * @param liveSearchResult  The live search result.
+   */
   onLiveSearchResults?(liveSearchResult: LiveSearchResult): void;
 
   /**
-  * Notifies the AcrolinxPlugin that live search for an input query has failed.
-  * @param query  The query on which the search has failed.
-  */
+   * Notifies the AcrolinxPlugin that live search for an input query has failed.
+   * @param query  The query on which the search has failed.
+   */
   onLiveSearchFailed?(query: string): void;
 
   /**
-  * the user has clicked on the button to open live panel. The AcrolinxPlugin is requested to open the live panel.
-  */
+   * the user has clicked on the button to open live panel. The AcrolinxPlugin is requested to open the live panel.
+   */
   openLivePanel?(): void;
 
   /**
-  * Notifies the AcrolinxPlugin that the user has changed the UI langauge in the sidebar.
-  * @param UILanguage   The selected UI language
-  */
+   * Notifies the AcrolinxPlugin that the user has changed the UI langauge in the sidebar.
+   * @param UILanguage   The selected UI language
+   */
   onUILanguageChanged?(UILanguage: string): void;
 
   /**
-  * Notifies the AcrolinxPlugin that the user has selected a target that supports live.
-  * @param supportsLive   True if the selected target supports live, false otherwise.
-  */
+   * Notifies the AcrolinxPlugin that the user has selected a target that supports live.
+   * @param supportsLive   True if the selected target supports live, false otherwise.
+   */
   onTargetChanged?(supportsLive: boolean): void;
-
 }
-
 
 /**
  * By default the Sidebar will use window.localStorage to store data.

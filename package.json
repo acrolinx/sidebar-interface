@@ -19,15 +19,19 @@
     "node": ">=20"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^7.17.0",
-    "@typescript-eslint/parser": "^7.17.0",
-    "eslint": "^8.57.0",
+    "@eslint/js": "^9.8.0",
+    "@types/eslint__js": "^8.42.3",
+    "eslint": "^9.8.0",
+    "prettier": "^3.3.3",
     "typedoc": "^0.26.5",
-    "typescript": "^5.5.4"
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^8.0.0-alpha.55"
   },
   "scripts": {
     "build": "tsc",
-    "lint": "eslint . --ext .ts",
-    "gendoc": "typedoc"
+    "lint": "eslint .",
+    "gendoc": "typedoc",
+    "format:check": "prettier . --check",
+    "format": "prettier . --write"
   }
 }

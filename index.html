@@ -1,128 +1,101 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html class="default" lang="en"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>@acrolinx/sidebar-interface</title><meta name="description" content="Documentation for @acrolinx/sidebar-interface"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script defer src="assets/main.js"></script><script async src="assets/icons.js" id="tsd-icons-script"></script><script async src="assets/search.js" id="tsd-search-script"></script><script async src="assets/navigation.js" id="tsd-nav-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar"><div class="tsd-toolbar-contents container"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget tsd-toolbar-icon search no-caption"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><use href="assets/icons.svg#icon-search"></use></svg></label><input type="text" id="tsd-search-field" aria-label="Search"/></div><div class="field"><div id="tsd-toolbar-links"></div></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">@acrolinx/sidebar-interface</a></div><div class="table-cell" id="tsd-widgets"><a href="#" class="tsd-widget tsd-toolbar-icon menu no-caption" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><use href="assets/icons.svg#icon-menu"></use></svg></a></div></div></header><div class="container container-main"><div class="col-content"><div class="tsd-page-title"><h2>@acrolinx/sidebar-interface</h2></div><section class="tsd-panel tsd-comment"><div class="tsd-comment tsd-typography"><p>This document describes the interface of the Acrolinx Sidebar. Batch checking feature is only supported from sidebar version 15.0 and Core Platform version 2021.12.</p>
+<p>Let's understand how the typical bootstrapping of an integration and the Acrolinx Sidebar works:</p>
+<ol>
+<li>
+<p>Load the host editor of your integration.</p>
+</li>
+<li>
+<p>Load your integration code.</p>
+</li>
+<li>
+<p>Register your integration as an AcrolinxPlugin.</p>
+</li>
+</ol>
+<pre><code><span class="hl-0">var</span><span class="hl-1"> </span><span class="hl-2">acrolinxPlugin</span><span class="hl-1"> = {...}</span>
+</code><button>Copy</button></pre>
 
-<head>
-  <meta charset="UTF-8">
-  <title>Acrolinx Sidebar Interface Documentation</title>
-  <link rel="stylesheet" href="./pluginDoc/assets/css/main.css">
-</head>
-
-<body>
-  <header>
-    <div class="tsd-page-title">
-      <div class="container">
-        <h1>Acrolinx Sidebar Interface Documentation</h1>
-        <div>
-          This page describes the interaction between the Acrolinx Sidebar and the integration.
-          Typically you don't have to deal with these internal interfaces.
-        </div>
-        <div>
-          If feasible, base your integration on one of the SDKs provided by Acrolinx
-          (See: <a href="https://docs.acrolinx.com/customintegrations">Getting
-            Started
-            with Custom Integrations</a>).
-        </div>
-      </div>
-    </div>
-  </header>
-  <div class="container container-main">
-    <div class="tsd-panel">
-      <h2>Acrolinx Sidebar API Reference</h2>
-
-      <div>
-        <a href="pluginDoc/modules/_index_.html">Acrolinx Sidebar API Reference</a>
-      </div>
-      <h2>Loading</h2>
-
-      <ol>
-        <li>Load your host editor and your integration code.</li>
-        <li>Register your integration as an <code>acrolinxPlugin</code> (See <code>AcrolinxPluginInterface</code>).
-          <code>
-    var acrolinxPlugin = {...}
-    </code>
-        </li>
-        <li>
-          Load the Sidebar and the referenced libraries code (usually sidebar.js, libs.js, sidebar.css).
-        </li>
-      </ol>
-      <h2>Initializing</h2>
-
-      <ol>
-        <li>
-          Once the Sidebar has finished loading, it will request the integration
-          to initialize by calling <code>requestInit</code>.
-        </li>
-        <li>
-          The AcrolinxPlugin now must call <code>init</code>.
-        </li>
-        <li>
-          Once the init process has finished, the integration will be notified <code>onInitFinished</code>.
-        </li>
-        <li>
-          After initializing, the Sidebar will call <code>configure</code> and push the latest
-          configuration to the integration. <br><br>
-
-          <img src="./media/init-sidebar-plugin.png" alt="Initializing Acrolinx Integration and Sidebar." />
-        </li>
-      </ol>
-
-      <h2>Checking</h2>
-      <li>
-        If the user pushes the button "Check" (in the Acrolinx Sidebar), <code>requestGlobalCheck</code> is called.
-      </li>
-      <li>
-        The acrolinxPlugin must call <code>checkGlobal</code> to perform a check.
-
-      </li>
-      <li> When the check finished, <code>onCheckResult</code> is called and the Sidebar displays cards for the issues. <br><br>
-
-        <img src="./media/checking.png" alt="Checking with Acrolinx Integration and Sidebar." />
-      </li>
-
-      <h2>Other Actions</h2>
-
-      <ul>
-        <li>When the user clicks on a card the Sidebar will invoke <code>selectRanges</code> on the Acrolinx
-          Integration.</li>
-        <li>When the user clicks on a replacement the Sidebar will call <code>replaceRanges</code>.
-        </li>
-      </ul>
-
-      <h2>Batch Checking</h2>
-
-      <div>
-        Batch checking is supported from Acrolinx Sidebar version 15.0 and Core Platform version 2021.12. <br><br>
-      </div>
-
-      <li>
-        If batch checking is supported and the user pushes the button "Batch Check" (in the Acrolinx Sidebar), <br>
-         <code>requestGlobalCheck</code> is called with the option <code>batchCheck</code> set to true.
-      </li>
-      <li>
-        To start a batch check, the acrolinxPlugin must call <code>initBatchCheck</code> with the list of documents <br> that needs to be checked.
-
-      </li>
-      <li>
-        For each document to be checked, <code>requestCheckForDocumentInBatch</code> is called.
-      </li>      
-      <li>
-        The acrolinxPlugin must then call <code>checkDocumentInBatch</code> to perform a check. The Sidebar displays a card  <br> for each document and the check process is started. <br><br>
-
-        <img src="./media/batch-checking.png" alt="Batch checking with Acrolinx Integration and Sidebar." />
-      </li>  
-      <li>
-        When the user clicks on a card, <code>openDocumentInEditor</code> is called to request the acrolinxPlugin to open the document.
-      </li>      
-
-      <br><br>
-
-      <div>
-        These are the most important interactions between the Acrolinx Sidebar and your integration.
-        See: <a href="pluginDoc/modules/_index_.html">Acrolinx Sidebar API Reference</a>
-        for more details.
-      </div>
-    </div>
-  </div>
-</body>
-
-</html>
+<p>Check the <a href="interfaces/AcrolinxPlugin.html" class="tsd-kind-interface">AcrolinxPlugin</a> interface for required methods, that you need to implement.</p>
+<ol start="4">
+<li>
+<p>Load the sidebar and the referenced libraries code (usually sidebar.js, libs.js, sidebar.css).</p>
+</li>
+<li>
+<p>Once the sidebar has finished loading it will request the integration to initialize by calling
+AcrolinxPlugin.requestInit|requestInit.</p>
+</li>
+<li>
+<p>The AcrolinxPlugin now must call AcrolinxSidebar.init|init.</p>
+</li>
+<li>
+<p>Once the init process has finished, the plug-in will be notified:
+AcrolinxPlugin.onInitFinished|onInitFinished.</p>
+</li>
+<li>
+<p>If the user pushes the button &quot;Check&quot; or &quot;Batch Check&quot;, AcrolinxPlugin.requestGlobalCheck|requestGlobalCheck is called.
+In case of a batch check, the flag RequestGlobalCheckOptions.batchCheck|batchCheck in options is set to true.</p>
+</li>
+<li>
+<p>The acrolinxPlugin must call AcrolinxSidebar.checkGlobal|checkGlobal to perform a check.
+In case of a batch check, the acrolinxPlugin must call  AcrolinxSidebar.initBatchCheck|initBatchCheck with a list of document identifiers to be checked.</p>
+</li>
+<li>
+<p>When a regular check has finished, AcrolinxPlugin.onCheckResult|onCheckResult is called and the sidebar displays
+cards for the issues.</p>
+</li>
+<li>
+<p>If the user clicks a card after a regular check, AcrolinxPlugin.selectRanges|selectRanges is called</p>
+</li>
+<li>
+<p>When the user selects a replacement after a regular check, AcrolinxPlugin.replaceRanges|replaceRanges is called.</p>
+</li>
+<li>
+<p>When a batch check is started, the sidebar will request the integration to initiate a check for each document identifier
+by calling AcrolinxPlugin.requestCheckForDocumentInBatch|requestCheckForDocumentInBatch.</p>
+</li>
+<li>
+<p>The acrolinxPlugin must then call AcrolinxSidebar.checkDocumentInBatch|checkDocumentInBatch to perform a check on a given document.</p>
+</li>
+<li>
+<p>If the user clicks a card after the batch check has started, AcrolinxPlugin.openDocumentInEditor|openDocumentInEditor is called requesting acrolinxPlugin to open the document.</p>
+</li>
+</ol>
+<p>For a minimal integration (not feature complete) you must implement requestInit, requestGlobalCheck,
+selectRanges and replaceRanges.</p>
+</div><div class="tsd-comment tsd-typography"></div></section><section class="tsd-panel-group tsd-index-group"><section class="tsd-panel tsd-index-panel"><h3 class="tsd-index-heading uppercase">Index</h3><section class="tsd-index-section"><h3 class="tsd-index-heading">Enumerations</h3><div class="tsd-index-list"><a href="enums/LogEntryType.html" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-8"></use></svg><span>Log<wbr/>Entry<wbr/>Type</span></a>
+<a href="enums/MessageType.html" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-8"></use></svg><span>Message<wbr/>Type</span></a>
+</div></section><section class="tsd-index-section"><h3 class="tsd-index-heading">Interfaces</h3><div class="tsd-index-list"><a href="interfaces/AcrolinxPlugin.html" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-256"></use></svg><span>Acrolinx<wbr/>Plugin</span></a>
+<a href="interfaces/AcrolinxSidebar.html" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-256"></use></svg><span>Acrolinx<wbr/>Sidebar</span></a>
+<a href="interfaces/AcrolinxStorage.html" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-256"></use></svg><span>Acrolinx<wbr/>Storage</span></a>
+<a href="interfaces/AugmentedExternalContent.html" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-256"></use></svg><span>Augmented<wbr/>External<wbr/>Content</span></a>
+<a href="interfaces/BatchCheckRequestOptions.html" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-256"></use></svg><span>Batch<wbr/>Check<wbr/>Request<wbr/>Options</span></a>
+<a href="interfaces/Check.html" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-256"></use></svg><span>Check</span></a>
+<a href="interfaces/CheckInformationKeyValuePair.html" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-256"></use></svg><span>Check<wbr/>Information<wbr/>Key<wbr/>Value<wbr/>Pair</span></a>
+<a href="interfaces/CheckOptions.html" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-256"></use></svg><span>Check<wbr/>Options</span></a>
+<a href="interfaces/CheckResult.html" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-256"></use></svg><span>Check<wbr/>Result</span></a>
+<a href="interfaces/CheckSettings.html" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-256"></use></svg><span>Check<wbr/>Settings</span></a>
+<a href="interfaces/CheckedDocumentPart.html" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-256"></use></svg><span>Checked<wbr/>Document<wbr/>Part</span></a>
+<a href="interfaces/CsrfConfig.html" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-256"></use></svg><span>Csrf<wbr/>Config</span></a>
+<a href="interfaces/DocumentSelection.html" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-256"></use></svg><span>Document<wbr/>Selection</span></a>
+<a href="interfaces/ExternalContent.html" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-256"></use></svg><span>External<wbr/>Content</span></a>
+<a href="interfaces/ExternalContentField.html" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-256"></use></svg><span>External<wbr/>Content<wbr/>Field</span></a>
+<a href="interfaces/ExternalContentMatch.html" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-256"></use></svg><span>External<wbr/>Content<wbr/>Match</span></a>
+<a href="interfaces/InitParameters.html" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-256"></use></svg><span>Init<wbr/>Parameters</span></a>
+<a href="interfaces/InitResult.html" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-256"></use></svg><span>Init<wbr/>Result</span></a>
+<a href="interfaces/LiveSearchResult.html" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-256"></use></svg><span>Live<wbr/>Search<wbr/>Result</span></a>
+<a href="interfaces/LiveSuggestion.html" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-256"></use></svg><span>Live<wbr/>Suggestion</span></a>
+<a href="interfaces/LogEntry.html" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-256"></use></svg><span>Log<wbr/>Entry</span></a>
+<a href="interfaces/Match.html" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-256"></use></svg><span>Match</span></a>
+<a href="interfaces/MatchLocation.html" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-256"></use></svg><span>Match<wbr/>Location</span></a>
+<a href="interfaces/MatchWithReplacement.html" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-256"></use></svg><span>Match<wbr/>With<wbr/>Replacement</span></a>
+<a href="interfaces/Message.html" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-256"></use></svg><span>Message</span></a>
+<a href="interfaces/OpenWindowParameters.html" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-256"></use></svg><span>Open<wbr/>Window<wbr/>Parameters</span></a>
+<a href="interfaces/RequestGlobalCheckOptions.html" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-256"></use></svg><span>Request<wbr/>Global<wbr/>Check<wbr/>Options</span></a>
+<a href="interfaces/SidebarConfiguration.html" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-256"></use></svg><span>Sidebar<wbr/>Configuration</span></a>
+<a href="interfaces/SidebarError.html" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-256"></use></svg><span>Sidebar<wbr/>Error</span></a>
+<a href="interfaces/SoftwareComponent.html" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-256"></use></svg><span>Software<wbr/>Component</span></a>
+</div></section><section class="tsd-index-section"><h3 class="tsd-index-heading">Type Aliases</h3><div class="tsd-index-list"><a href="types/CheckedDocumentRange.html" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-2097152"></use></svg><span>Checked<wbr/>Document<wbr/>Range</span></a>
+<a href="types/DocumentRange.html" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-2097152"></use></svg><span>Document<wbr/>Range</span></a>
+<a href="types/InvalidDocumentPart.html" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-2097152"></use></svg><span>Invalid<wbr/>Document<wbr/>Part</span></a>
+<a href="types/UiMode.html" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-2097152"></use></svg><span>Ui<wbr/>Mode</span></a>
+</div></section><section class="tsd-index-section"><h3 class="tsd-index-heading">Variables</h3><div class="tsd-index-list"><a href="variables/SoftwareComponentCategory.html" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-32"></use></svg><span>Software<wbr/>Component<wbr/>Category</span></a>
+</div></section></section></section></div><div class="col-sidebar"><div class="page-menu"><div class="tsd-navigation settings"><details class="tsd-accordion"><summary class="tsd-accordion-summary"><h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><use href="assets/icons.svg#icon-chevronDown"></use></svg>Settings</h3></summary><div class="tsd-accordion-details"><div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span><ul id="tsd-filter-options"><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div><div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div></div><div class="site-menu"><nav class="tsd-navigation"><a href="index.html" class="current"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-1"></use></svg><span>@acrolinx/sidebar-interface</span></a><ul class="tsd-small-nested-navigation" id="tsd-nav-container" data-base="."><li>Loading...</li></ul></nav></div></div></div><footer><p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></footer><div class="overlay"></div></body></html>

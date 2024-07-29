@@ -25,7 +25,14 @@ jobs:
 
       - run: npm run build
 
+      - run: npm run gendoc
+
       - run: npm publish --access public
-        # TODO publish to GitHub pages
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
+      
+      - name: Deploy Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: pluginDoc/
+          branch: gh-pages

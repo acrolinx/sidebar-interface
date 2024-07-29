@@ -208,7 +208,7 @@ export interface InitParameters extends SidebarConfiguration {
   accessToken?: string;
 }
 
-export type UiMode = "default" | "noOptions";
+export type UiMode = 'default' | 'noOptions';
 
 export interface CsrfConfig {
   url: string;
@@ -259,19 +259,19 @@ export const SoftwareComponentCategory = {
    * This information is used to identify your client on the server.
    * Version information about this components might be displayed more prominently.
    */
-  MAIN: "MAIN",
+  MAIN: 'MAIN',
 
   /**
    * Version information about such components are displayed in the about
    * dialog.
    */
-  DEFAULT: "DEFAULT",
+  DEFAULT: 'DEFAULT',
 
   /**
    * Version information about such components are displayed in the detail section of the about
    * dialog or not at all.
    */
-  DETAIL: "DETAIL",
+  DETAIL: 'DETAIL',
 };
 
 export interface RequestGlobalCheckOptions {
@@ -486,10 +486,10 @@ export interface SidebarError {
 }
 
 export enum MessageType {
-  success = "success",
-  info = "info",
-  warning = "warning",
-  error = "error",
+  success = 'success',
+  info = 'info',
+  warning = 'warning',
+  error = 'error',
 }
 
 export interface Message {
@@ -499,10 +499,10 @@ export interface Message {
 }
 
 export enum LogEntryType {
-  debug = "debug",
-  info = "info",
-  warning = "warning",
-  error = "error",
+  debug = 'debug',
+  info = 'info',
+  warning = 'warning',
+  error = 'error',
 }
 
 export interface LogEntry {
@@ -586,11 +586,7 @@ export interface AcrolinxSidebar {
    * @param documentContent The document to be checked.
    * @param options Check options.
    */
-  checkDocumentInBatch?(
-    documentIdentifier: string,
-    documentContent: string,
-    options: CheckOptions,
-  ): void;
+  checkDocumentInBatch?(documentIdentifier: string, documentContent: string, options: CheckOptions): void;
 
   onGlobalCheckRejected(): void;
 
@@ -705,10 +701,7 @@ export interface AcrolinxPlugin {
    * @param checkId  The id of the check. You get the id as result of checkGlobal.
    * @param matchesWithReplacements The parts of the document, which should be replaced and its replacements.
    */
-  replaceRanges(
-    checkId: string,
-    matchesWithReplacements: MatchWithReplacement[],
-  ): void;
+  replaceRanges(checkId: string, matchesWithReplacements: MatchWithReplacement[]): void;
 
   /**
    * @param openWindowParameters

@@ -23,7 +23,7 @@
     "@types/eslint__js": "^8.42.3",
     "eslint": "^10.2.0",
     "prettier": "^3.8.2",
-    "typedoc": "^0.28.18",
+    "typedoc": "^0.28.19",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.58.1"
   },

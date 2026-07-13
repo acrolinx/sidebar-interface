@@ -21,7 +21,7 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@types/eslint__js": "^8.42.3",
-    "eslint": "^10.6.0",
+    "eslint": "^10.7.0",
     "prettier": "^3.9.5",
     "typedoc": "^0.28.20",
     "typescript": "^5.9.3",
